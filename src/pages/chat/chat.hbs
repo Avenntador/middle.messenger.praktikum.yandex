@@ -1,0 +1,42 @@
+<main class="chat">
+    <aside class="sidebar">
+        <div class="sidebar__header">
+            <button class="button button_outlined sidebar__user-profile-button">
+                Профиль >
+            </button>
+            <input class="input input_no-border sidebar__search-chat-input" placeholder="Поиск" />
+        </div>
+
+        <ul class="chat-list">
+            {{{chatList}}}
+        </ul>
+    </aside>
+
+    <div class="chat-content">
+        <div class="chat-content__info-header">
+            <figure class="avatar avatar_small">
+                <img src={{avatarIcon}} alt="user-avatar" />
+            </figure>
+            <p class="chat-content__username">Name</p>
+            <button class="chat-content__util-menu button button_featured"></button>
+        </div>
+
+        <div class="chat-content__correspondence">
+            <ol class="messages">
+                {{{messagesList}}}
+            </ol>
+
+        </div>
+
+        <div class="chat-content__input">
+            <figure class="chat-content__attach">
+                <img src={{attachIcon}} alt="attach-icon" />
+            </figure>
+
+            <input placeholder="Сообщение" class="input chat-content__new-message" type="text" />
+            <figure class="chat-content__send">
+                <img src={{arrowRightIcon}} alt="send-icon" />
+            </figure>
+        </div>
+    </div>
+</main>

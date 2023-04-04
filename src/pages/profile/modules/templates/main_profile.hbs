@@ -1,0 +1,48 @@
+<div class="profile">
+    <div class="profile__avatar avatar avatar_large">
+        <img src={{avatarIcon}} alt="user-avatar" />
+        <div id="upload-avatar-button" class="profile__avatar-hover-change-background">
+            Поменять <br />
+            аватар
+        </div>
+    </div>
+    <h2 class="profile__username">{{name}}</h2>
+
+    <div class="profile__inputs">
+        <label class="profile__input" for="email">
+            Почта
+            <input disabled placeholder="pochta@yandex.ru" class="input input_no-border" type="email" id="email" />
+        </label>
+        <span class="divider"></span>
+        <label class="profile__input" for="login">
+            Логин
+            <input disabled placeholder="ivanivanov" class="input input_no-border" type="text" id="login" />
+        </label>
+        <span class="divider"></span>
+        <label class="profile__input" for="first_name">
+            Имя
+            <input disabled placeholder="Иван" class="input input_no-border" type="text" id="first_name" />
+        </label>
+        <span class="divider"></span>
+        <label class="profile__input" for="second_name">
+            Фамилия
+            <input disabled placeholder="Иванов" class="input input_no-border" type="text" id="second_name" />
+        </label>
+        <span class="divider"></span>
+        <label class="profile__input" for="display_name">
+            Имя в чате
+            <input disabled placeholder="Иван" class="input input_no-border" type="text" id="display_name" />
+        </label>
+        <span class="divider"></span>
+        <label class="profile__input" for="phone">
+            Телефон
+            <input disabled placeholder="+7(909)9673030" class="input input_no-border" type="number" id="phone" />
+        </label>
+    </div>
+
+    <div class="profile__actions">
+        <button class="button button_outlined ">Изменить данные</button>
+        <button class="button button_outlined ">Изменить пароль</button>
+        <button class="button button_outlined button_warning">Выйти</button>
+    </div>
+</div>

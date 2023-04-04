@@ -1,0 +1,30 @@
+@use "sass/abstracts/variables" as *;
+@use "sass/abstracts/mixins" as *;
+
+html {
+  font-size: 62.5%;
+  font-family: "Inter", sans-serif;
+  color: $font-color-primary;
+
+  @include respond(tab-land) {
+    font-size: 56.25%;
+  }
+
+  @include respond(tab-port) {
+    font-size: 50%;
+  }
+
+  @include respond(big-desktop) {
+    font-size: 75%;
+  }
+}
+
+body {
+  box-sizing: border-box;
+  overflow: hidden;
+  height: 100vh;
+}
+
+#root {
+  height: inherit;
+}

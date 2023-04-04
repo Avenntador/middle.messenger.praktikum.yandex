@@ -1,0 +1,24 @@
+@use "sass/abstracts/variables" as *;
+
+.navigation {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100000;
+
+  &__list {
+    display: flex;
+    font-size: $default-font-size;
+  }
+
+  &__item {
+    list-style: none;
+    margin-left: 1rem;
+
+    & > a {
+      text-decoration: none;
+      color: $font-color-tertiary;
+    }
+  }
+}
