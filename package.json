@@ -4,8 +4,9 @@
   "description": "middle.messenger.praktikum.yandex",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
-    "start": "parcel static/index.html",
-    "build": "parcel build static/index.html"
+    "dev": "parcel static/index.html",
+    "build": "parcel build static/index.html",
+    "start": "node server.js"
   },
   "author": "Gilyazetdinov Bulat bulat40k@gmail.com",
   "license": "ISC",
