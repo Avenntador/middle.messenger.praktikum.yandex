@@ -1,13 +1,12 @@
 const express = require("express");
 const path = require("path");
 const app = express();
+const PORT = 3000;
 
 app.use(express.static("./dist"));
 
-app.get("*", function (req, res) {
+app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "./dist/index.html"));
 });
 
-app.listen(process.env.PORT || 3000, () =>
-  console.log("server is now running.")
-);
+app.listen(PORT, () => console.log(`Server runs on  ${PORT}!`));
