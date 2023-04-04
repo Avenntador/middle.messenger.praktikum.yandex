@@ -24,7 +24,10 @@ const router = () => {
       case "/chat":
         root.innerHTML = chatContainer();
         break;
-      case "/error":
+      case "/error404":
+        root.innerHTML = errorContainer("404");
+        break;
+      case "/error500":
         root.innerHTML = errorContainer("500");
         break;
       default:
@@ -52,7 +55,10 @@ const router = () => {
       path: "/chat",
     },
     {
-      path: "/error",
+      path: "/error404",
+    },
+    {
+      path: "/error500",
     },
   ];
 
