@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "parcel static/index.html",
     "build": "parcel build static/index.html",
-    "start": "node server.js"
+    "start": "parcel build static/index.html & node server.js"
   },
   "author": "Gilyazetdinov Bulat bulat40k@gmail.com",
   "license": "ISC",
