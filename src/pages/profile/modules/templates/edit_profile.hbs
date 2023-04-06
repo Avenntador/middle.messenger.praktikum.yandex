@@ -6,40 +6,46 @@
             аватар
         </div>
     </div>
-    <div class="profile__inputs">
-        <label class="profile__input" for="email">
-            Почта
-            <input placeholder="pochta@yandex.ru" class="input input_no-border" type="email" id="email" />
-        </label>
-        <span class="divider"></span>
-        <label class="profile__input" for="login">
-            Логин
-            <input placeholder="ivanivanov" class="input input_no-border" type="text" id="login" />
-        </label>
-        <span class="divider"></span>
-        <label class="profile__input" for="first_name">
-            Имя
-            <input placeholder="Иван" class="input input_no-border" type="text" id="first_name" />
-        </label>
-        <span class="divider"></span>
-        <label class="profile__input" for="second_name">
-            Фамилия
-            <input placeholder="Иванов" class="input input_no-border" type="text" id="second_name" />
-        </label>
-        <span class="divider"></span>
-        <label class="profile__input" for="display_name">
-            Имя в чате
-            <input placeholder="Иван" class="input input_no-border" type="text" id="display_name" />
-        </label>
-        <span class="divider"></span>
-        <label class="profile__input" for="phone">
-            Телефон
-            <input placeholder="+7(909)9673030" class="input input_no-border" type="number" id="phone" />
-        </label>
+    <form action="#">
+        <div class="profile__inputs">
+            <label class="profile__input" for="email">
+                Почта
+                <input placeholder="pochta@yandex.ru" name="email" class="input input_no-border" type="email"
+                    id="email" />
+            </label>
+            <span class="divider"></span>
+            <label class="profile__input" for="login">
+                Логин
+                <input placeholder="ivanivanov" name="login" class="input input_no-border" type="text" id="login" />
+            </label>
+            <span class="divider"></span>
+            <label class="profile__input" for="first_name">
+                Имя
+                <input placeholder="Иван" name="first_name" class="input input_no-border" type="text" id="first_name" />
+            </label>
+            <span class="divider"></span>
+            <label class="profile__input" for="second_name">
+                Фамилия
+                <input placeholder="Иванов" name="second_name" class="input input_no-border" type="text"
+                    id="second_name" />
+            </label>
+            <span class="divider"></span>
+            <label class="profile__input" for="display_name">
+                Имя в чате
+                <input placeholder="Иван" name="display_name" class="input input_no-border" type="text"
+                    id="display_name" />
+            </label>
+            <span class="divider"></span>
+            <label class="profile__input" for="phone">
+                Телефон
+                <input placeholder="+7(909)9673030" name="phone" class="input input_no-border" type="number"
+                    id="phone" />
+            </label>
 
-    </div>
+        </div>
 
-    <div class="profile__actions">
-        <button class=" profile__submit button button_contained">Сохранить</button>
-    </div>
+        <div class="profile__actions">
+            <button class=" profile__submit button button_contained">Сохранить</button>
+        </div>
+    </form>
 </div>
