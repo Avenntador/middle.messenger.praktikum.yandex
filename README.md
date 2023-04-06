@@ -7,5 +7,5 @@
 
 ### Также не забудьте проверить, что репозиторий публичный.
 
-PR sprint 1 - https://github.com/Avenntador/middle.messenger.praktikum.yandex/pull/3
+PR sprint 1 - https://github.com/Avenntador/middle.messenger.praktikum.yandex/pull/6
 ---
