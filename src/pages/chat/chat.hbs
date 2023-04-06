@@ -4,7 +4,7 @@
             <button class="button button_outlined sidebar__user-profile-button">
                 Профиль >
             </button>
-            <input class="input input_no-border sidebar__search-chat-input" placeholder="Поиск" />
+            <input class="input input_no-border sidebar__search-chat-input" name="chat-search" placeholder="Поиск" />
         </div>
 
         <ul class="chat-list">
@@ -28,15 +28,15 @@
 
         </div>
 
-        <div class="chat-content__input">
+        <form class="chat-content__input">
             <figure class="chat-content__attach">
                 <img src={{attachIcon}} alt="attach-icon" />
             </figure>
 
-            <input placeholder="Сообщение" class="input chat-content__new-message" type="text" />
+            <input placeholder="Сообщение" name="message" class="input chat-content__new-message" type="text" />
             <figure class="chat-content__send">
                 <img src={{arrowRightIcon}} alt="send-icon" />
             </figure>
-        </div>
+        </form>
     </div>
 </main>
