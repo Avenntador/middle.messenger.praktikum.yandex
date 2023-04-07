@@ -1,0 +1,31 @@
+@use "sass/abstracts/variables" as *;
+
+.input {
+  font-size: $default-font-size;
+  font-weight: 500;
+  outline: 0;
+  padding: 0.3rem 0;
+
+  &:disabled {
+    background-color: transparent;
+    color: $font-color-secondary;
+  }
+
+  &__label {
+    font-size: 0.9rem;
+    color: $font-color-secondary;
+  }
+
+  &_bottom-border {
+    width: 100%;
+    border-color: $color-primary;
+    border-width: 0 0 0.1px;
+  }
+
+  &_no-border {
+    border: 0;
+    border-color: transparent;
+    text-align: right;
+    color: $font-color-secondary;
+  }
+}

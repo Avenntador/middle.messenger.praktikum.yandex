@@ -1,0 +1,24 @@
+@use "sass/abstracts/mixins" as *;
+@use "sass/abstracts/variables" as *;
+
+.error {
+  font-weight: 500;
+  color: $font-color-primary;
+  text-align: center;
+  position: absolute;
+  @include absolute-centerHorizontalVertical;
+
+  &__title {
+    font-size: 4rem;
+    margin-bottom: 4rem;
+  }
+
+  &__message {
+    font-size: 2rem;
+  }
+
+  &__back-button {
+    margin-top: 7rem;
+    color: $font-color-tertiary;
+  }
+}

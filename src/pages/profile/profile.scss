@@ -1,0 +1,95 @@
+@use "sass/abstracts/variables" as *;
+@use "sass/abstracts/mixins" as *;
+
+.profile__container {
+  display: flex;
+  position: relative;
+}
+
+.profile {
+  position: absolute;
+  @include absolute-centerHorizontalVertical;
+
+  width: 47rem;
+
+  &__avatar {
+    margin: 0 auto 2.1rem auto;
+    position: relative;
+    z-index: 1;
+
+    &-hover-change-background {
+      width: 100%;
+      height: 100%;
+    }
+
+    img {
+      position: absolute;
+      z-index: 10;
+    }
+
+    &-hover-change-background {
+      display: flex;
+      @include d-flex-centerHorizontalVertical;
+
+      position: relative;
+      z-index: 1000;
+
+      background-color: rgba(0, 0, 0, 0.253);
+      color: #ffff;
+      font-size: $default-font-size;
+      text-align: center;
+      cursor: pointer;
+      opacity: 0;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__username {
+    display: block;
+    text-align: center;
+  }
+
+  &__inputs {
+    margin-top: 9.7rem;
+  }
+
+  &__input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: $default-font-size;
+    font-weight: 500;
+    padding: 1rem;
+  }
+
+  &__submit {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  &__actions {
+    margin-top: 6rem;
+
+    & > *:not(:last-child) {
+      display: block;
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__back-button {
+    display: flex;
+    @include d-flex-centerHorizontalVertical;
+    width: 6.4rem;
+    height: 100vh;
+    background-color: $background-color-tertiary;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $background-color-primary;
+    }
+  }
+}

@@ -1,11 +1,17 @@
-### Ветка, в которой делаете задания спринта, должна называться sprint_i, где i - номер спринта. Не переименовывайте её.
+# Проект первого модуля - мессенджер
 
-### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main. 
-### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).
+## 1 спринт
 
-### Например, задания для проектной работы во втором спринте вы делаете в ветке sprint_2. Открываете из неё pull request в ветку main. Ссылку на этот pr добавляете в README.md в ветке main. После этого на платформе Практикума нажимаете «Проверить задание».
+## UI - https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0-1
+## Деплой на Netlify - https://bucolic-cascaron-d42cc8.netlify.app/
 
-### Также не забудьте проверить, что репозиторий публичный.
+  - Сверстаны все страницы
+  - Проект реализован в виде SPA
+  - Автодеплой на Netlify
+  - Проект запускается на порте 3000
+  - Команда для сборки - npm run build
+  - Команда для запуска - npm run start
+  
+### Временный navbar для демонстрации
+![navbar](https://user-images.githubusercontent.com/29005134/229859606-bc5868f8-01c4-42cf-bea2-022e66bcf309.png)
 
-PR sprint 1 - https://github.com/Avenntador/middle.messenger.praktikum.yandex/pull/6
----
