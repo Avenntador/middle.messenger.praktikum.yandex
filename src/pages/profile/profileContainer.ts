@@ -10,7 +10,7 @@ import profileContainerTemplate from "./profileContainer.hbs";
 // icons
 import arrowLeftIcon from "static/icons/arrowLeftIcon.png";
 
-const profileContainer = (path) => {
+const profileContainer = (path: string) => {
   let renderComponent = null;
 
   if (path === "profile") {

@@ -4,10 +4,10 @@ import loginTemplate from "./modules/login";
 import registerTemplate from "./modules/register";
 import authContainerTemplate from "./authContainer.hbs";
 
-const authContainer = (path) => {
+const authContainer = (path: string) => {
   let renderComponent = path === "/" ? loginTemplate() : registerTemplate();
   const context = {
-    renderComponent
+    renderComponent,
   };
 
   return authContainerTemplate(context);

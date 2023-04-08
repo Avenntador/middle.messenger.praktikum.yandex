@@ -4,7 +4,18 @@ import chatContainer from "./pages/chat";
 import errorContainer from "./pages/error";
 
 const router = () => {
-  const render = (path) => {
+  const navLinks = document.querySelectorAll(".nav-link");
+  const root = document.getElementById("root");
+
+  if (!root) {
+    throw new Error("Root element doesn't exist");
+  }
+
+  navLinks.forEach((item) => {
+    item.addEventListener("click", (e) => routerHandler(e));
+  });
+
+  const render = (path: string) => {
     switch (path) {
       case "/":
         root.innerHTML = authContainer("/");
@@ -62,16 +73,11 @@ const router = () => {
     },
   ];
 
-  const navLinks = document.querySelectorAll(".nav-link");
-  const root = document.getElementById("root");
-
-  navLinks.forEach((item) => {
-    item.addEventListener("click", (e) => routerHandler(e));
-  });
-
-  function routerHandler(event) {
+  function routerHandler(event: Event) {
     event.preventDefault();
-    history.pushState({}, "newUrl", event.target.href);
+    if (event.target && event.target instanceof HTMLAnchorElement) {
+      history.pushState({}, "newUrl", event.target.href);
+    }
     let route = routes.find((route) => route.path == window.location.pathname);
     if (route && route.path) {
       render(route.path);

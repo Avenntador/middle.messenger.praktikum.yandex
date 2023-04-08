@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@pages/*": ["src/pages/*"],
+      "@sass/*": ["src/sass/*"],
+      "@static/*": ["/static/*"]
+    }
+  }
+}

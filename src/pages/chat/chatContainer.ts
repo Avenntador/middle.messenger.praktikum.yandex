@@ -76,7 +76,10 @@ const chatContainer = () => {
 
 export default chatContainer;
 
-export const createList = (items, template) => {
+export const createList = <T>(
+  items: T[],
+  template: (param?: any) => string
+): string => {
   let itemList = ``;
   for (let i = 0; i < items.length; i++) {
     itemList += template(items[i]);
