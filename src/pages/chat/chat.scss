@@ -1,34 +1,34 @@
-@use "sass/abstracts/variables" as *;
+@use 'sass/abstracts/variables' as *;
 
 .chat {
+  display: flex;
   height: inherit;
   max-height: 100vh;
-  display: flex;
 }
 
 .sidebar {
   width: 31rem;
   max-height: 100vh;
-  padding: 2.1rem 1rem 0 1rem;
+  padding: 2.1rem 1rem 0;
   background-color: #fbfbfb;
   overflow-y: scroll;
 
   &__user-profile-button {
-    color: $font-color-secondary;
     display: block;
     margin-left: auto;
+    color: $font-color-secondary;
   }
 
   &__search-chat-input {
     width: 100%;
     height: 2.9rem;
-    background: url("../../../static/icons/searchIcon.png") no-repeat;
-    background-position: 42%;
-    border-radius: 0.5rem;
     padding-left: 25px;
-    text-align: center;
+    border-radius: 0.5rem;
+    margin: 2.3rem 0 1.4rem;
+    background: url('../../../static/icons/searchIcon.png') no-repeat;
     background-color: #efefef;
-    margin: 2.3rem 0 1.4rem 0;
+    background-position: 42%;
+    text-align: center;
 
     &:focus,
     &:not(:placeholder-shown) {
@@ -40,15 +40,15 @@
 
 .chat-list {
   &__item {
+    display: flex;
     width: 100%;
     height: 7.1rem;
+    padding: 1.2rem 0;
     border-top: 1px solid #eaeaea;
     border-bottom: 1px solid #eaeaea;
-    padding: 1.2rem 0;
-    display: flex;
     color: $font-color-secondary;
-    font-weight: 500;
     cursor: pointer;
+    font-weight: 500;
   }
 
   &__user-info,
@@ -58,14 +58,14 @@
   }
 
   &__user-info {
-    margin-left: 1rem;
     flex: 1;
+    margin-left: 1rem;
   }
 
   &__additional {
     align-items: flex-end;
-    justify-self: flex-end;
     justify-content: space-between;
+    justify-self: flex-end;
   }
 
   &__name {
@@ -86,29 +86,29 @@
     display: block;
     width: 2rem;
     height: 2rem;
-    border-radius: 50%;
-    color: #ffff;
-    background-color: $color-primary;
-    text-align: center;
     padding: 0.3rem;
+    border-radius: 50%;
+    background-color: $color-primary;
+    color: #ffff;
+    text-align: center;
   }
 }
 
 .chat-content {
-  padding: 1rem 2rem 0 1rem;
-  display: flex;
-  flex-direction: column;
   position: relative;
-  flex: 1;
+  display: flex;
   overflow: hidden;
   height: 100%;
+  flex: 1;
+  flex-direction: column;
+  padding: 1rem 2rem 0 1rem;
 
   &__info-header {
-    padding: 1rem 0;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.212);
     display: flex;
-    align-items: center;
     flex: 0 0 auto;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgb(128 128 128 / 21.2%);
   }
 
   &__username {
@@ -122,60 +122,57 @@
   }
 
   &__new-message {
-    border: 0;
-    background-color: #efefef;
     height: 3.2rem;
+    flex: 1;
     padding: 1rem 2rem;
+    border: 0;
     border-radius: 3rem;
+    margin: 0 1.5rem;
+    background-color: #efefef;
     font-size: 1.2rem;
   }
 
   &__correspondence {
-    padding: 5rem 0 3rem 0;
-    overflow-y: scroll;
     flex: 1;
+    padding: 5rem 0 3rem;
+    overflow-y: scroll;
   }
 
   &__input {
     display: flex;
+    flex: 0 0 auto;
     align-items: center;
     padding: 1rem 0;
-    border-top: 1px solid rgba(128, 128, 128, 0.212);
-    flex: 0 0 auto;
+    border-top: 1px solid rgb(128 128 128 / 21.2%);
   }
 
   &__attach,
   &__send {
     cursor: pointer;
   }
-
-  &__new-message {
-    flex: 1;
-    margin: 0 1.5rem;
-  }
 }
 
 .messages {
-  padding: 8px;
-  margin: 0;
   position: relative;
   display: flex;
+  overflow: auto;
   flex-direction: column;
   align-items: flex-start;
-  overflow: auto;
+  padding: 8px;
+  margin: 0;
   font-size: 1.2rem;
 
   & > li {
-    max-width: 40rem;
-    padding: 1rem;
-    list-style-type: none;
-    margin: 2px 8px 2px 0;
-    float: left;
-    border-radius: 8px;
-    color: $font-color-primary;
     position: relative;
     z-index: 1;
+    max-width: 40rem;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 2px 8px 2px 0;
     background: #f8f8f8;
+    color: $font-color-primary;
+    float: left;
+    list-style-type: none;
 
     img {
       width: 100%;
@@ -184,9 +181,9 @@
   }
 
   &__mine {
-    margin: 2px 0 2px 8px;
-    align-self: flex-end;
     z-index: 0;
+    align-self: flex-end;
+    margin: 2px 0 2px 8px;
     background-color: $background-color-secondary;
     color: $font-color-primary;
   }

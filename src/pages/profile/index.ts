@@ -1,2 +1,3 @@
-import profileContainer from "./profileContainer";
+import profileContainer from './profileContainer';
+
 export default profileContainer;

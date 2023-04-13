@@ -1,10 +1,10 @@
-import mainProfileTemplate from "./templates/main_profile.hbs";
-import avatarIcon from "static/icons/avatarIcon.png";
+import avatarIcon from 'static/icons/avatarIcon.png';
+import mainProfileTemplate from './templates/main_profile.hbs';
 
 const mainProfile = () => {
   const context = {
     avatarIcon,
-    name: "Name"
+    name: 'Name',
   };
 
   return mainProfileTemplate(context);

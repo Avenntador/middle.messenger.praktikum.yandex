@@ -1,48 +1,56 @@
-import "./chat.scss";
-
-// templates
-import chatTemplate from "./chat.hbs";
-import chatListItemTemplate from "./templates/chat-list-item.hbs";
-import messageTemplate from "./templates/message.hbs";
+import './chat.scss';
 
 // icons
-import avatarIcon from "static/icons/avatarIcon.png";
-import arrowRightIcon from "static/icons/arrowRightIcon.png";
-import attachIcon from "static/icons/attachIcon.png";
-import deliveredIcon from "static/icons/deliveredIcon.png";
+import avatarIcon from 'static/icons/avatarIcon.png';
+import arrowRightIcon from 'static/icons/arrowRightIcon.png';
+import attachIcon from 'static/icons/attachIcon.png';
+import deliveredIcon from 'static/icons/deliveredIcon.png';
+
+// templates
+import chatTemplate from './chat.hbs';
+import chatListItemTemplate from './templates/chat-list-item.hbs';
+import messageTemplate from './templates/message.hbs';
+
+export const createList = <T>(items: T[], template: (param?: any) => string): string => {
+  let itemList = '';
+  for (let i = 0; i < items.length; i++) {
+    itemList += template(items[i]);
+  }
+  return itemList;
+};
 
 const chatContainer = () => {
   const messages = [
     {
       mine: true,
-      message: "Hi",
+      message: 'Hi',
       status: true,
-      time: "11:00",
+      time: '11:00',
       deliveredIcon,
     },
     {
-      message: "Hi, how are you?",
-      time: "11:02",
+      message: 'Hi, how are you?',
+      time: '11:02',
       deliveredIcon,
     },
     {
       mine: true,
       message: "I'm fine, thank you",
       status: true,
-      time: "11:04",
+      time: '11:04',
       deliveredIcon,
     },
     {
       mine: true,
-      message: "Look at this, duuude",
+      message: 'Look at this, duuude',
       status: true,
-      time: "11:04",
+      time: '11:04',
       image: avatarIcon,
       deliveredIcon,
     },
     {
-      message: "No, look at this, dud",
-      time: "11:04",
+      message: 'No, look at this, dud',
+      time: '11:04',
       image: avatarIcon,
       deliveredIcon,
     },
@@ -50,16 +58,16 @@ const chatContainer = () => {
   const chatListItems = [
     {
       avatarIcon,
-      userName: "Андрей",
-      lastMessage: "LastMessage1",
-      time: "11:00",
+      userName: 'Андрей',
+      lastMessage: 'LastMessage1',
+      time: '11:00',
       count: 1,
     },
     {
       avatarIcon,
-      userName: "Дима",
-      lastMessage: "LastMessage2",
-      time: "12:00",
+      userName: 'Дима',
+      lastMessage: 'LastMessage2',
+      time: '12:00',
       count: 3,
     },
   ];
@@ -75,14 +83,3 @@ const chatContainer = () => {
 };
 
 export default chatContainer;
-
-export const createList = <T>(
-  items: T[],
-  template: (param?: any) => string
-): string => {
-  let itemList = ``;
-  for (let i = 0; i < items.length; i++) {
-    itemList += template(items[i]);
-  }
-  return itemList;
-};

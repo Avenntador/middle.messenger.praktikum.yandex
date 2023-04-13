@@ -1,23 +1,23 @@
-import "./profile.scss";
-
-// templates
-import uploadAvatar from "./modules/upload_avatar";
-import mainProfile from "./modules/main_profile";
-import editProfile from "./modules/edit_profile";
-import changePassword from "./modules/change_password";
-import profileContainerTemplate from "./profileContainer.hbs";
+import './profile.scss';
 
 // icons
-import arrowLeftIcon from "static/icons/arrowLeftIcon.png";
+import arrowLeftIcon from 'static/icons/arrowLeftIcon.png';
+
+// templates
+import uploadAvatar from './modules/upload_avatar';
+import mainProfile from './modules/main_profile';
+import editProfile from './modules/edit_profile';
+import changePassword from './modules/change_password';
+import profileContainerTemplate from './profileContainer.hbs';
 
 const profileContainer = (path: string) => {
   let renderComponent = null;
 
-  if (path === "profile") {
+  if (path === 'profile') {
     renderComponent = mainProfile();
-  } else if (path === "profile-edit") {
+  } else if (path === 'profile-edit') {
     renderComponent = editProfile();
-  } else if (path === "profile-change-password") {
+  } else if (path === 'profile-change-password') {
     renderComponent = changePassword();
   }
 

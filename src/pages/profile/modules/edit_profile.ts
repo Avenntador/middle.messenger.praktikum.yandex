@@ -1,5 +1,5 @@
-import edit_profile from "./templates/edit_profile.hbs";
-import avatarIcon from "static/icons/avatarIcon.png";
+import avatarIcon from 'static/icons/avatarIcon.png';
+import edit_profile from './templates/edit_profile.hbs';
 
 const editProfile = () => {
   const context = {

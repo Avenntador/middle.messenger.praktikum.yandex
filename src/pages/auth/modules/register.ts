@@ -1,4 +1,4 @@
-import registerTemplate from "./templates/register.hbs";
+import registerTemplate from './templates/register.hbs';
 
 const register = () => {
   const context = {};

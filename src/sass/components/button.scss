@@ -1,18 +1,18 @@
-@use "sass/abstracts/variables" as *;
+@use 'sass/abstracts/variables' as *;
 
 .button {
-  font-size: $default-font-size;
   border: none;
-  font-weight: 500;
   background-color: transparent;
   cursor: pointer;
+  font-size: $default-font-size;
+  font-weight: 500;
 
   &_contained {
     width: 100%;
     height: 3.7rem;
-    color: #ffff;
     border-radius: 0.8rem;
     background-color: $color-primary;
+    color: #ffff;
   }
 
   &_outlined {
@@ -21,7 +21,7 @@
   }
 
   &_featured::after {
-    content: "\2807";
+    content: '\2807';
     font-size: 2rem;
   }
 
