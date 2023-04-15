@@ -15,5 +15,8 @@ module.exports = {
   rules: {
     'no-restricted-globals': 'off',
     'no-plusplus': 'off',
+    'no-underscore-dangle': 0,
+    'class-methods-use-this': 0,
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
   },
 };
