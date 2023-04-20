@@ -7,7 +7,7 @@
 }
 
 .profile {
-  position: absolute;
+  position: fixed;
 
   @include absolute-centerHorizontalVertical;
 
@@ -46,6 +46,8 @@
 
   &__username {
     display: block;
+    font-size: 2rem;
+    font-weight: 600;
     text-align: center;
   }
 
@@ -79,13 +81,13 @@
 
   &__back-button {
     display: flex;
-
-    @include d-flex-centerHorizontalVertical;
-
     width: 6.4rem;
     height: 100vh;
-    background-color: $background-color-tertiary;
+    border: none;
+    background-color: $background-color-secondary;
     cursor: pointer;
+
+    @include d-flex-centerHorizontalVertical;
 
     &:hover {
       background-color: $background-color-primary;

@@ -1,7 +1,8 @@
-import profileContainer from './pages/profile';
-import authContainer from './pages/auth';
-import chatContainer from './pages/chat';
-import errorContainer from './pages/error';
+import renderDom from './utils/renderDom';
+
+import Profile from './pages/profile';
+import Auth from './pages/auth';
+import Chat from './pages/chat';
 
 const router = () => {
   const routes = [
@@ -31,6 +32,10 @@ const router = () => {
     },
   ];
 
+  const ProfileInstance = new Profile();
+  const AuthInstance = new Auth();
+  const ChatInstance = new Chat();
+
   const navLinks = document.querySelectorAll('.nav-link');
   const root = document.getElementById('root');
 
@@ -41,31 +46,36 @@ const router = () => {
   const render = (path: string) => {
     switch (path) {
       case '/':
-        root.innerHTML = authContainer('/');
+        AuthInstance.changePage('login');
+        renderDom(root, AuthInstance);
         break;
       case '/register':
-        root.innerHTML = authContainer('register');
+        AuthInstance.changePage('register');
+        renderDom(root, AuthInstance);
         break;
       case '/profile':
-        root.innerHTML = profileContainer('profile');
+        ProfileInstance.changePage('profile');
+        renderDom(root, ProfileInstance);
         break;
       case '/profile-edit':
-        root.innerHTML = profileContainer('profile-edit');
+        ProfileInstance.changePage('profile-edit');
+        renderDom(root, ProfileInstance);
         break;
       case '/profile-change-password':
-        root.innerHTML = profileContainer('profile-change-password');
+        ProfileInstance.changePage('profile-change-password');
+        renderDom(root, ProfileInstance);
         break;
       case '/chat':
-        root.innerHTML = chatContainer();
+        renderDom(root, ChatInstance);
         break;
-      case '/error404':
-        root.innerHTML = errorContainer('404');
-        break;
-      case '/error500':
-        root.innerHTML = errorContainer('500');
-        break;
+      // case '/error404':
+      //   root.innerHTML = errorContainer('404');
+      //   break;
+      // case '/error500':
+      //   root.innerHTML = errorContainer('500');
+      //   break;
       default:
-        root.innerHTML = errorContainer('404');
+      // root.innerHTML = errorContainer('404');
     }
   };
 

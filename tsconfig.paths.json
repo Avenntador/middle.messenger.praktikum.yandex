@@ -5,7 +5,8 @@
       "@pages/*": ["src/pages/*"],
       "@sass/*": ["src/sass/*"],
       "@static/*": ["/static/*"],
-      "@utils/*": ["/src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@components/*": ["src/components/*"]
     }
   }
 }

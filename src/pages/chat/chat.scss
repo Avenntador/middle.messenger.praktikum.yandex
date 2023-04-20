@@ -49,6 +49,10 @@
     color: $font-color-secondary;
     cursor: pointer;
     font-weight: 500;
+
+    &:hover {
+      background-color: $background-color-secondary;
+    }
   }
 
   &__user-info,
@@ -71,6 +75,11 @@
   &__name {
     color: $font-color-primary;
     font-size: $default-font-size;
+  }
+
+  &__mine-last-message {
+    color: $font-color-primary;
+    font-weight: 700;
   }
 
   &__last-message {
@@ -121,6 +130,11 @@
     margin-left: auto;
   }
 
+  &__new-message-label {
+    display: flex;
+    flex: 1;
+  }
+
   &__new-message {
     height: 3.2rem;
     flex: 1;
@@ -138,6 +152,14 @@
     overflow-y: scroll;
   }
 
+  &__correspondence-date {
+    margin-bottom: 3rem;
+    color: $font-color-secondary;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+  }
+
   &__input {
     display: flex;
     flex: 0 0 auto;
@@ -148,7 +170,26 @@
 
   &__attach,
   &__send {
+    border: 0;
+    background-color: transparent;
     cursor: pointer;
+  }
+
+  &__popover {
+    position: absolute;
+    bottom: 5rem;
+    width: 16.2rem;
+    height: 12.8rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 0 6px rgb(0 0 0 / 14%);
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &__attach:hover .chat-content__popover {
+    opacity: 1;
+    visibility: visible;
   }
 }
 
