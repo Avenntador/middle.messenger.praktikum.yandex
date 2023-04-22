@@ -1,31 +1,8 @@
 <main class="chat">
     {{{sidebar}}}
-
     <div class="chat-content">
-        <div class="chat-content__info-header">
-            {{{avatar}}}
-            <p class="chat-content__username">{{name}}</p>
-            {{{userAddOrDeleteButton}}}
-        </div>
-
+        {{{header}}}
         {{{correspondence}}}
-   
-
-        <form class="chat-content__input">
-            <figure class="chat-content__attach">
-                <img src={{attachIcon}} alt="attach-icon" />
-                <div class="chat-content__popover">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-            </figure>
-            
-
-            {{{newMessageInput}}}
-            <button class="chat-content__send">
-                <img src={{arrowRightIcon}} alt="send-icon" />
-            </button>
-        </form>
+        {{{inputForm}}}
     </div>
 </main>

@@ -4,13 +4,12 @@ import Message from './message';
 
 interface CorrespondenceProps {
   messages: Message[];
+  date: string;
 }
 
 class Correspondence extends Component<CorrespondenceProps> {
   constructor(props: CorrespondenceProps) {
-    super({
-      messages: props.messages,
-    });
+    super({ ...props });
   }
 
   render() {

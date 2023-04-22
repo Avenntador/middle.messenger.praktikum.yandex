@@ -104,7 +104,6 @@
 }
 
 .chat-content {
-  position: relative;
   display: flex;
   overflow: hidden;
   height: 100%;
@@ -167,34 +166,9 @@
     padding: 1rem 0;
     border-top: 1px solid rgb(128 128 128 / 21.2%);
   }
-
-  &__attach,
-  &__send {
-    border: 0;
-    background-color: transparent;
-    cursor: pointer;
-  }
-
-  &__popover {
-    position: absolute;
-    bottom: 5rem;
-    width: 16.2rem;
-    height: 12.8rem;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 0 6px rgb(0 0 0 / 14%);
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  &__attach:hover .chat-content__popover {
-    opacity: 1;
-    visibility: visible;
-  }
 }
 
 .messages {
-  position: relative;
   display: flex;
   overflow: auto;
   flex-direction: column;
@@ -204,8 +178,6 @@
   font-size: 1.2rem;
 
   & > li {
-    position: relative;
-    z-index: 1;
     max-width: 40rem;
     padding: 1rem;
     border-radius: 8px;
@@ -222,7 +194,6 @@
   }
 
   &__mine {
-    z-index: 0;
     align-self: flex-end;
     margin: 2px 0 2px 8px;
     background-color: $background-color-secondary;
