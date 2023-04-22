@@ -3,6 +3,7 @@ import renderDom from './utils/renderDom';
 import Profile from './pages/profile';
 import Auth from './pages/auth';
 import Chat from './pages/chat';
+import ErrorPage from './pages/error';
 
 const router = () => {
   const routes = [
@@ -35,6 +36,7 @@ const router = () => {
   const ProfileInstance = new Profile();
   const AuthInstance = new Auth();
   const ChatInstance = new Chat();
+  const ErrorPageInstance = new ErrorPage();
 
   const navLinks = document.querySelectorAll('.nav-link');
   const root = document.getElementById('root');
@@ -68,12 +70,14 @@ const router = () => {
       case '/chat':
         renderDom(root, ChatInstance);
         break;
-      // case '/error404':
-      //   root.innerHTML = errorContainer('404');
-      //   break;
-      // case '/error500':
-      //   root.innerHTML = errorContainer('500');
-      //   break;
+      case '/error404':
+        ErrorPageInstance.setProps({ errorNumber: '404' });
+        renderDom(root, ErrorPageInstance);
+        break;
+      case '/error500':
+        ErrorPageInstance.setProps({ errorNumber: '500' });
+        renderDom(root, ErrorPageInstance);
+        break;
       default:
       // root.innerHTML = errorContainer('404');
     }
