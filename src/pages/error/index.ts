@@ -1,3 +1,19 @@
-import errorContainer from './errorContainer';
+import './error.scss';
+import Component from '../../utils/Component';
+import errorPageTemplate from './error.hbs';
 
-export default errorContainer;
+interface ErrorPageProps {
+  errorNumber?: string;
+}
+
+class Button extends Component<ErrorPageProps> {
+  constructor(props?: ErrorPageProps) {
+    super({ ...props });
+  }
+
+  render() {
+    return this.compile(errorPageTemplate, this.props);
+  }
+}
+
+export default Button;

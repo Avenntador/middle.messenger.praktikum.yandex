@@ -6,10 +6,10 @@ import arrowLeftIcon from '../../../static/icons/arrowLeftIcon.png';
 import MainProfilePage from './modules/main_profile';
 import EditProfilePage from './modules/edit_profile';
 import ChangePasswordPage from './modules/change_password';
-import UploadAvatar from './components/upload_avatar';
 
 import avatarIcon from '../../../static/icons/avatarIcon.png';
 import Avatar from '../../components/avatar';
+import Modal from '../../components/modal';
 
 interface ProfileProps {
   content?: Component;
@@ -46,7 +46,11 @@ class Profile extends Component {
     this.children.backButton = new BackButton({
       backIcon: arrowLeftIcon,
     });
-    this.children.modal = new UploadAvatar();
+    this.children.modal = new Modal({
+      type: false,
+      title: 'Загрузите файл',
+      buttonTitle: 'Поменять',
+    });
     this.children.avatar = new Avatar({
       avatar: avatarIcon,
       withModal: true,
@@ -80,8 +84,7 @@ class Profile extends Component {
   }
 
   showModal(element: HTMLElement) {
-    const currentModal = element;
-    currentModal.style.display = 'block';
+    element.style.display = 'block';
   }
 
   render() {
