@@ -1,12 +1,10 @@
-<figure>
-    <div class="{{styles.avatar}}">
-        <img src='{{avatar}}' alt="user-avatar" />
-        {{#if withModal}}
-        <div id="upload-avatar-button" class="{{styles.modal}}">
-            Поменять <br />
-            аватар
-        </div>
-        {{/if}}
+<div class="{{styles.avatar}}">
+    <img src='{{avatar}}' alt="user-avatar" />
+    {{#if withModal}}
+    <div id="upload-avatar-button" class="avatar__background-change">
+        Поменять <br />
+        аватар
     </div>
-    {{#if title}}<figcaption class="{{styles.title}}">{{title}}</figcaption>{{/if}}
-</figure>
+    {{/if}}
+</div>
+{{#if title}}<div class="{{styles.title}}">{{title}}</div>{{/if}}

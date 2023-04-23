@@ -1,10 +1,10 @@
-import Component from '../../../../utils/Component';
+import Component from '../../../../../../utils/Component';
 import CorrespondenceTeamplate from './correspondence.hbs';
-import Message from './message';
+import Message from '../../../../components/message';
 
 interface CorrespondenceProps {
-  messages: Message[];
-  date: string;
+  messages?: Message[];
+  date?: string;
 }
 
 class Correspondence extends Component<CorrespondenceProps> {

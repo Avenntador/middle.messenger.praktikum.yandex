@@ -1,4 +1,4 @@
-import Component from '../../../../../utils/Component';
+import Component from '../../../../utils/Component';
 import MessageTemplate from './message.hbs';
 
 interface MessageProps {

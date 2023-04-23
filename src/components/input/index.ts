@@ -1,9 +1,11 @@
+import './input.scss';
 import Component from '../../utils/Component';
 import inputTemplate from './input.hbs';
 
 interface InputProps {
   name: string;
   styles: Record<string, string>;
+  fileInputLabel?: string;
   label?: string;
   placeholder?: string;
   isDisabled?: boolean;

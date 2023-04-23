@@ -47,7 +47,7 @@ class ChangePasswordPage extends Component {
         click: this.onSubmit,
       },
       styles: {
-        button: 'profile__submit button button_contained',
+        button: 'profile__submit button button_contained ',
       },
     });
   }

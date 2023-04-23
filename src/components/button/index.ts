@@ -1,3 +1,4 @@
+import './button.scss';
 import Component from '../../utils/Component';
 import buttonTemplate from './button.hbs';
 

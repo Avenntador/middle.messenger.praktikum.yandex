@@ -1,16 +1,16 @@
-import Component from '../../../../utils/Component';
+import Component from '../../../../../../utils/Component';
 import headerTemplate from './header.hbs';
 
-import Menu from '../../components/menu';
-import MenuItem from '../../components/menu/menuItem';
-import Modal from '../../../../components/modal';
-import Avatar from '../../../../components/avatar';
-import Button from '../../../../components/button';
-import avatarIcon from '../../../../../static/icons/avatarIcon.png';
-import imageAndVideoIcon from '../../../../../static/icons/photo.png';
+import Menu from '../../../../components/menu';
+import MenuItem from '../../../../components/menu/menuItem';
+import Modal from '../../../../../../components/modal';
+import Avatar from '../../../../../../components/avatar';
+import Button from '../../../../../../components/button';
+import avatarIcon from '../../../../../../../static/icons/avatarIcon.png';
+import imageAndVideoIcon from '../../../../../../../static/icons/photo.png';
 
 interface HeaderProps {
-  name: string;
+  name?: string;
 }
 
 class Header extends Component<HeaderProps> {
@@ -36,8 +36,8 @@ class Header extends Component<HeaderProps> {
           },
           events: {
             click: () => {
-              this._hideMenu(this.children.userMenu.getContent());
-              const modalElement = this.children.addUserModal.getContent();
+              this._hideMenu((this.children.userMenu as Component).getContent());
+              const modalElement = (this.children.addUserModal as Component).getContent();
               if (modalElement) {
                 this._showModal(modalElement);
               }
@@ -52,8 +52,8 @@ class Header extends Component<HeaderProps> {
           },
           events: {
             click: () => {
-              this._hideMenu(this.children.userMenu.getContent());
-              const modalElement = this.children.deleteUserModal.getContent();
+              this._hideMenu((this.children.userMenu as Component).getContent());
+              const modalElement = (this.children.deleteUserModal as Component).getContent();
               if (modalElement) {
                 this._showModal(modalElement);
               }
@@ -73,7 +73,7 @@ class Header extends Component<HeaderProps> {
       },
       events: {
         click: () => {
-          const menuElment = this.children.userMenu.getContent();
+          const menuElment = (this.children.userMenu as Component).getContent();
           if (menuElment) {
             this._showMenu(menuElment);
           }
@@ -108,16 +108,22 @@ class Header extends Component<HeaderProps> {
     }
   }
 
-  _showModal(element: HTMLElement) {
-    element.style.display = 'block';
+  _showModal(element: HTMLElement | null) {
+    if (element) {
+      element.style.display = 'block';
+    }
   }
 
-  _showMenu(element: HTMLElement) {
-    element.style.display = 'flex';
+  _showMenu(element: HTMLElement | null) {
+    if (element) {
+      element.style.display = 'flex';
+    }
   }
 
-  _hideMenu(element: HTMLElement) {
-    element.style.display = 'none';
+  _hideMenu(element: HTMLElement | null) {
+    if (element) {
+      element.style.display = 'none';
+    }
   }
 
   render() {

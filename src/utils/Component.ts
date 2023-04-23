@@ -191,7 +191,6 @@ class Component<T extends Record<string, any> = any> {
       set(target, prop, value) {
         const oldTarget = { ...target };
 
-        // eslint-disable-next-line no-param-reassign
         target[prop as keyof T] = value;
 
         const newTarget = { ...oldTarget, ...target };

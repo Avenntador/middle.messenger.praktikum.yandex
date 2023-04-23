@@ -33,7 +33,7 @@ class LoginPage extends Component {
       type: 'submit',
       label: 'Авторизоваться',
       styles: {
-        button: 'button button_contained auth-form__submit',
+        button: 'button button_contained button_fullwidth auth-form__submit',
       },
       events: {
         click: this.onSubmit,
@@ -44,7 +44,7 @@ class LoginPage extends Component {
       type: 'button',
       label: 'Нет аккаунта?',
       styles: {
-        button: 'button button_outlined auth-form__sign',
+        button: 'button button_outlined button_fullwidth auth-form__sign',
       },
     });
   }

@@ -1,16 +1,16 @@
-import Component from '../../../../utils/Component';
-import Input from '../../../../components/input';
+import Component from '../../../../../../utils/Component';
+import Input from '../../../../../../components/input';
 import inputsFormTemplate from './inputsForm.hbs';
-import IconButton from '../../../../components/iconButton';
+import IconButton from '../../../../../../components/iconButton';
 
-import imageAndVideoIcon from '../../../../../static/icons/photo.png';
-import fileIcon from '../../../../../static/icons/file.png';
-import locationIcon from '../../../../../static/icons/location.png';
-import attachIcon from '../../../../../static/icons/attachIcon.png';
-import sendIcon from '../../../../../static/icons/arrowRightIcon.png';
-import Menu from '../../components/menu';
-import MenuItem from '../../components/menu/menuItem';
-import Modal from '../../../../components/modal';
+import imageAndVideoIcon from '../../../../../../../static/icons/photo.png';
+import fileIcon from '../../../../../../../static/icons/file.png';
+import locationIcon from '../../../../../../../static/icons/location.png';
+import attachIcon from '../../../../../../../static/icons/attachIcon.png';
+import sendIcon from '../../../../../../../static/icons/arrowRightIcon.png';
+import Menu from '../../../../components/menu';
+import MenuItem from '../../../../components/menu/menuItem';
+import Modal from '../../../../../../components/modal';
 
 class InputForm extends Component {
   constructor() {
@@ -24,7 +24,7 @@ class InputForm extends Component {
       styles: { button: 'icon-button chat-content__attach' },
       events: {
         click: () => {
-          const menuElment = this.children.attachMenu.getContent();
+          const menuElment = (this.children.attachMenu as Component).getContent();
           if (menuElment) {
             this._showMenu(menuElment);
           }
@@ -41,8 +41,8 @@ class InputForm extends Component {
           },
           events: {
             click: () => {
-              this._hideMenu(this.children.attachMenu.getContent());
-              const modalElement = this.children.addFileModal.getContent();
+              this._hideMenu((this.children.attachMenu as Component).getContent());
+              const modalElement = (this.children.addFileModal as Component).getContent();
               if (modalElement) {
                 this._showModal(modalElement);
               }
@@ -57,8 +57,8 @@ class InputForm extends Component {
           },
           events: {
             click: () => {
-              this._hideMenu(this.children.attachMenu.getContent());
-              const modalElement = this.children.addFileModal.getContent();
+              this._hideMenu((this.children.attachMenu as Component).getContent());
+              const modalElement = (this.children.addFileModal as Component).getContent();
               if (modalElement) {
                 this._showModal(modalElement);
               }
@@ -101,7 +101,7 @@ class InputForm extends Component {
 
     this.children.addFileModal = new Modal({
       type: false,
-      title: 'Добавить файл, видео или фото',
+      title: 'Добавить файл',
       buttonTitle: 'Добавить',
     });
     this.setProps({
@@ -111,8 +111,10 @@ class InputForm extends Component {
     this._initModalListeners(this.children.addFileModal.getContent());
   }
 
-  _showModal(element: HTMLElement) {
-    element.style.display = 'block';
+  _showModal(element: HTMLElement | null) {
+    if (element) {
+      element.style.display = 'block';
+    }
   }
 
   _initModalListeners(element: HTMLElement | null) {
@@ -126,12 +128,16 @@ class InputForm extends Component {
     }
   }
 
-  _showMenu(element: HTMLElement) {
-    element.style.display = 'flex';
+  _showMenu(element: HTMLElement | null) {
+    if (element) {
+      element.style.display = 'flex';
+    }
   }
 
-  _hideMenu(element: HTMLElement) {
-    element.style.display = 'none';
+  _hideMenu(element: HTMLElement | null) {
+    if (element) {
+      element.style.display = 'none';
+    }
   }
 
   onSubmit(e: Event) {

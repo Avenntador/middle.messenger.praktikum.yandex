@@ -1,141 +1,122 @@
 import './chat.scss';
 import Component from '../../utils/Component';
 import ChatTemplate from './chat.hbs';
+
 import Sidebar from './modules/sidebar';
-import Header from './modules/header';
-import InputForm from './modules/inputsForm';
-import Correspondence from './modules/correspondence';
-import ChatListItem from './modules/sidebar/chatListItem';
-import Message from './modules/correspondence/message';
+import ChatContent from './modules/chat-content';
+
+import ChatListItem, { ChatListItemProps } from './modules/sidebar/chatListItem';
+import Message from './components/message';
 
 import avatarIcon from '../../../static/icons/avatarIcon.png';
 import deliveredIcon from '../../../static/icons/deliveredIcon.png';
 
 const mockChats = [
-  new ChatListItem({
-    avatar: avatarIcon,
-    userName: 'Семен',
-    lastMessage: 'Привет!',
+  {
+    id: 1,
+    lastMessage: {
+      user: {
+        first_name: 'Петя',
+        second_name: 'Пупкин',
+        avatar: avatarIcon,
+        email: 'some@q.com',
+        login: 'some',
+        phone: 'some',
+      },
+    },
     time: '11.02.2022',
-    unreadMessagesCount: 1,
+    unread_count: 1,
     mine: true,
-  }),
-  new ChatListItem({
-    avatar: avatarIcon,
-    userName: 'Петя',
-    lastMessage: 'Пока!',
-    time: '13.02.2022',
-    unreadMessagesCount: 4,
-  }),
-  new ChatListItem({
-    avatar: avatarIcon,
-    userName: 'Вика',
-    lastMessage: 'Хех!',
+    content: 'Привет!',
+  },
+  {
+    id: 2,
+    lastMessage: {
+      user: {
+        first_name: 'Витя',
+        second_name: 'Пупкин',
+        avatar: avatarIcon,
+        email: 'some@q.com',
+        login: 'some',
+        phone: 'some',
+      },
+    },
     time: '11.02.2022',
-    unreadMessagesCount: 1,
+    unread_count: 1,
+    mine: false,
+    content: 'Привет!',
+  },
+  {
+    id: 3,
+    lastMessage: {
+      user: {
+        first_name: 'Леня',
+        second_name: 'Пупкин',
+        avatar: avatarIcon,
+        email: 'some@q.com',
+        login: 'some',
+        phone: 'some',
+      },
+    },
+    time: '11.02.2022',
+    unread_count: 1,
     mine: true,
-  }),
-  new ChatListItem({
-    avatar: avatarIcon,
-    userName: 'Света',
-    lastMessage: ':)',
-    time: '11.02.2022',
-    unreadMessagesCount: 1,
-  }),
-  new ChatListItem({
-    avatar: avatarIcon,
-    userName: 'Света',
-    lastMessage: ':)',
-    time: '11.02.2022',
-    unreadMessagesCount: 1,
-    mine: true,
-  }),
-  new ChatListItem({
-    avatar: avatarIcon,
-    userName: 'Света',
-    lastMessage: ':)',
-    time: '11.02.2022',
-    unreadMessagesCount: 1,
-    mine: true,
-  }),
-  new ChatListItem({
-    avatar: avatarIcon,
-    userName: 'Света',
-    lastMessage: ':)',
-    time: '11.02.2022',
-    unreadMessagesCount: 1,
-  }),
-  new ChatListItem({
-    avatar: avatarIcon,
-    userName: 'Света',
-    lastMessage: ':)',
-    time: '11.02.2022',
-    unreadMessagesCount: 1,
-    mine: true,
-  }),
-  new ChatListItem({
-    avatar: avatarIcon,
-    userName: 'Света',
-    lastMessage: ':)',
-    time: '11.02.2022',
-    unreadMessagesCount: 1,
-  }),
-  new ChatListItem({
-    avatar: avatarIcon,
-    userName: 'Света',
-    lastMessage: ':)',
-    time: '11.02.2022',
-    unreadMessagesCount: 1,
-  }),
-  new ChatListItem({
-    avatar: avatarIcon,
-    userName: 'Света',
-    lastMessage: ':)',
-    time: '11.02.2022',
-    unreadMessagesCount: 1,
-  }),
-  new ChatListItem({
-    avatar: avatarIcon,
-    userName: 'Света',
-    lastMessage: ':)',
-    time: '11.02.2022',
-    unreadMessagesCount: 1,
-  }),
+    content: 'Привет!',
+  },
 ];
 
 const mockMessages = [
-  new Message({
-    mine: true,
-    message: 'Hi',
-    deliveredIcon,
-    time: '12:00',
-  }),
-  new Message({
-    mine: false,
-    message: 'How are u?',
-    deliveredIcon,
-    time: '12:00',
-  }),
-  new Message({
-    mine: true,
-    image: avatarIcon,
-    message: 'Fine',
-    deliveredIcon,
-    time: '12:00',
-  }),
-  new Message({
-    mine: false,
-    message: 'Good',
-    deliveredIcon,
-    time: '12:00',
-  }),
-  new Message({
-    mine: true,
-    image: avatarIcon,
-    message: 'Look',
-    deliveredIcon,
-    time: '12:00',
-  }),
+  {
+    id: 1,
+    messages: [
+      {
+        mine: true,
+        message: 'Hi',
+        deliveredIcon,
+        time: '12:00',
+      },
+      {
+        mine: false,
+        message: 'How are u?',
+        deliveredIcon,
+        time: '12:00',
+      },
+    ],
+  },
+  {
+    id: 2,
+    messages: [
+      {
+        mine: true,
+        message: 'HIHIHIIH',
+        deliveredIcon,
+        time: '12:00',
+      },
+      {
+        mine: false,
+        message: 'YOYOYOOY',
+        deliveredIcon,
+        time: '12:00',
+      },
+    ],
+  },
+  {
+    id: 3,
+    messages: [
+      {
+        mine: true,
+        message: 'Privet',
+        deliveredIcon,
+        time: '12:00',
+      },
+      {
+        mine: false,
+        message: 'Privet',
+        deliveredIcon,
+        time: '12:00',
+      },
+    ],
+  },
 ];
 
 class Chat extends Component {
@@ -144,10 +125,35 @@ class Chat extends Component {
   }
 
   init() {
-    this.children.sidebar = new Sidebar({ chats: mockChats });
-    this.children.correspondence = new Correspondence({ messages: mockMessages, date: '11 июня' });
-    this.children.inputForm = new InputForm();
-    this.children.header = new Header({ name: 'NAME' });
+    this.children.sidebar = new Sidebar({
+      chats: this._createChats(mockChats),
+    });
+    this.children.chatContent = new ChatContent({ isLoaded: false });
+  }
+
+  _createChats(chats: ChatListItemProps[]) {
+    return chats.map(
+      (chat) => new ChatListItem({
+        ...chat,
+        events: {
+          click: () => {
+            this._selectChat(chat);
+          },
+        },
+      }),
+    );
+  }
+
+  _selectChat(chat: ChatListItemProps) {
+    mockMessages.forEach((fetchMessages) => {
+      if (fetchMessages.id === chat.id) {
+        (this.children.chatContent as Component).setProps({
+          messages: fetchMessages.messages.map((item) => new Message({ ...item })),
+          isLoaded: true,
+          name: chat.lastMessage?.user.first_name,
+        });
+      }
+    });
   }
 
   render() {

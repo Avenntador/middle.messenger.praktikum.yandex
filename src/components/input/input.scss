@@ -28,4 +28,10 @@
     color: $font-color-secondary;
     text-align: right;
   }
+
+  &__file-name {
+    color: $font-color-secondary;
+    font-size: 1.4rem;
+    text-decoration: none !important;
+  }
 }

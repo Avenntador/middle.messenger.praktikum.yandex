@@ -1,3 +1,4 @@
+import './avatar.scss';
 import avatarTemplate from './avatar.hbs';
 import Component from '../../utils/Component';
 

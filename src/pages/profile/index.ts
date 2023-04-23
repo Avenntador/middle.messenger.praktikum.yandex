@@ -57,14 +57,13 @@ class Profile extends Component {
       title: 'Name',
       styles: {
         avatar: 'profile__avatar avatar avatar_large',
-        modal: 'profile__avatar-hover-change-background',
         title: 'profile__username',
       },
       events: {
         click: () => {
-          const modalElement = this.children.modal.getContent();
+          const modalElement = (this.children.modal as Component).getContent();
           if (modalElement) {
-            this.showModal(modalElement);
+            this._showModal(modalElement);
           }
         },
       },
@@ -83,7 +82,7 @@ class Profile extends Component {
     }
   }
 
-  showModal(element: HTMLElement) {
+  _showModal(element: HTMLElement) {
     element.style.display = 'block';
   }
 

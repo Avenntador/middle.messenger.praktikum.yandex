@@ -36,18 +36,31 @@ class Modal extends Component<ModalProps> {
         label: 'modal__input-file',
         input: 'modal-input',
       },
+      events: {
+        change: (e: Event) => {
+          this.onChangeInputHandler(e);
+        },
+      },
     });
 
     this.children.submitButton = new Button({
       type: 'submit',
       label: this.props.buttonTitle,
       styles: {
-        button: 'button button_contained',
+        button: 'button button_contained button_fullwidth',
       },
       events: {
         click: this.onSubmit,
       },
     });
+  }
+
+  onChangeInputHandler(e: Event) {
+    const target = e.target as HTMLInputElement;
+    if (target.files) {
+      const fileName = target.files[0].name;
+      this.children.inputFile.setProps({ fileInputLabel: fileName });
+    }
   }
 
   onSubmit(e: any) {

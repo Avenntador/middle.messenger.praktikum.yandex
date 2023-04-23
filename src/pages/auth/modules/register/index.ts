@@ -77,7 +77,7 @@ class RegisterPage extends Component {
       type: 'submit',
       label: 'Зарегистрироваться',
       styles: {
-        button: 'button button_contained auth-form__submit',
+        button: 'button button_contained button_fullwidth auth-form__submit',
       },
       events: {
         click: this.onSubmit,
@@ -88,7 +88,7 @@ class RegisterPage extends Component {
       type: 'button',
       label: 'Войти',
       styles: {
-        button: 'button button_outlined auth-form__sign',
+        button: 'button button_outlined button_fullwidth auth-form__sign',
       },
     });
   }
