@@ -18,7 +18,7 @@ class Input extends Component<InputProps> {
     super({ ...props });
   }
 
-  render() {
+  protected render() {
     return this.compile(inputTemplate, this.props);
   }
 }

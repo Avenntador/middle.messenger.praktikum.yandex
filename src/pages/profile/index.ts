@@ -22,7 +22,7 @@ class Profile extends Component {
     });
   }
 
-  changePage(route: string) {
+  public changePage(route: string) {
     switch (route) {
       case 'profile': {
         this.setProps({ content: new MainProfilePage() });
@@ -42,7 +42,7 @@ class Profile extends Component {
     }
   }
 
-  init() {
+  protected init() {
     this.children.backButton = new BackButton({
       backIcon: arrowLeftIcon,
     });
@@ -68,10 +68,10 @@ class Profile extends Component {
         },
       },
     });
-    this.initModalListeners(this.children.modal.getContent());
+    this._initModalListeners(this.children.modal.getContent());
   }
 
-  initModalListeners(element: HTMLElement | null) {
+  private _initModalListeners(element: HTMLElement | null) {
     const currentModal = element;
     if (currentModal) {
       document.body.addEventListener('click', (e) => {
@@ -82,11 +82,11 @@ class Profile extends Component {
     }
   }
 
-  _showModal(element: HTMLElement) {
+  private _showModal(element: HTMLElement) {
     element.style.display = 'block';
   }
 
-  render() {
+  protected render() {
     return this.compile(profilePageTemplate, { ...this.props });
   }
 }

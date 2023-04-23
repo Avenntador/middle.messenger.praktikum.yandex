@@ -15,7 +15,7 @@ class Avatar extends Component<AvatarProps> {
     super({ ...props });
   }
 
-  render() {
+  protected render() {
     return this.compile(avatarTemplate, { ...this.props });
   }
 }

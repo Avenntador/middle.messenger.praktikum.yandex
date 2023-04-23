@@ -12,7 +12,7 @@ class BackButton extends Component<BackButtonProps> {
     });
   }
 
-  render() {
+  protected render() {
     return this.compile(backButtonTemplate, { ...this.props });
   }
 }

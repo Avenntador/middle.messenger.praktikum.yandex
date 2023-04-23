@@ -11,7 +11,7 @@ class Button extends Component<ErrorPageProps> {
     super({ ...props });
   }
 
-  render() {
+  protected render() {
     return this.compile(errorPageTemplate, this.props);
   }
 }

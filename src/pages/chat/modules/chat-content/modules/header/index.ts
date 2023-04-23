@@ -18,7 +18,7 @@ class Header extends Component<HeaderProps> {
     super({ ...props });
   }
 
-  init() {
+  protected init() {
     this.children.avatar = new Avatar({
       avatar: avatarIcon,
       withModal: false,
@@ -97,7 +97,7 @@ class Header extends Component<HeaderProps> {
     this._initModalListeners(this.children.deleteUserModal.getContent());
   }
 
-  _initModalListeners(element: HTMLElement | null) {
+  private _initModalListeners(element: HTMLElement | null) {
     const currentModal = element;
     if (currentModal) {
       document.body.addEventListener('click', (e) => {
@@ -108,25 +108,25 @@ class Header extends Component<HeaderProps> {
     }
   }
 
-  _showModal(element: HTMLElement | null) {
+  private _showModal(element: HTMLElement | null) {
     if (element) {
       element.style.display = 'block';
     }
   }
 
-  _showMenu(element: HTMLElement | null) {
+  private _showMenu(element: HTMLElement | null) {
     if (element) {
       element.style.display = 'flex';
     }
   }
 
-  _hideMenu(element: HTMLElement | null) {
+  private _hideMenu(element: HTMLElement | null) {
     if (element) {
       element.style.display = 'none';
     }
   }
 
-  render() {
+  protected render() {
     return this.compile(headerTemplate, { ...this.props });
   }
 }

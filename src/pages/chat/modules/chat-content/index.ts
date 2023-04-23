@@ -16,19 +16,19 @@ class ChatContent extends Component<ChatContentProps> {
     super({ ...props });
   }
 
-  init() {
+  protected init() {
     this.children.header = new Header({});
     this.children.correspondence = new Correspondence({});
     this.children.inputForm = new InputForm();
   }
 
-  protected componentDidUpdate(oldProps: ChatContentProps, newProps: ChatContentProps): boolean {
+  protected componentDidUpdate(oldProps: ChatContentProps, newProps: ChatContentProps) {
     (this.children.header as Component).setProps({ name: newProps.name });
     (this.children.correspondence as Component).setProps({ messages: newProps.messages });
     return true;
   }
 
-  render() {
+  protected render() {
     return this.compile(ChatConentTemplate, { ...this.props });
   }
 }

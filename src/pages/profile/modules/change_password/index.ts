@@ -8,7 +8,7 @@ class ChangePasswordPage extends Component {
     super({});
   }
 
-  init() {
+  protected init() {
     this.children.oldPasswordInput = new Input({
       label: 'Старый пароль',
       type: 'password',
@@ -44,7 +44,7 @@ class ChangePasswordPage extends Component {
       type: 'submit',
       label: 'Сохранить',
       events: {
-        click: this.onSubmit,
+        click: this._onSubmit,
       },
       styles: {
         button: 'profile__submit button button_contained ',
@@ -52,12 +52,12 @@ class ChangePasswordPage extends Component {
     });
   }
 
-  onSubmit(e: Event) {
+  private _onSubmit(e: Event) {
     e.preventDefault();
     console.log('Поменял пароль');
   }
 
-  render() {
+  protected render() {
     return this.compile(changePasswordTemplate, { ...this.props });
   }
 }

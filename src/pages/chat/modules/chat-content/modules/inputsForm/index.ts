@@ -17,7 +17,7 @@ class InputForm extends Component {
     super({});
   }
 
-  init() {
+  protected init() {
     this.children.attachIconButton = new IconButton({
       icon: attachIcon,
       type: 'button',
@@ -84,7 +84,7 @@ class InputForm extends Component {
       icon: sendIcon,
       styles: { button: 'icon-button ' },
       events: {
-        click: this.onSubmit,
+        click: this._onSubmit,
       },
     });
 
@@ -111,13 +111,13 @@ class InputForm extends Component {
     this._initModalListeners(this.children.addFileModal.getContent());
   }
 
-  _showModal(element: HTMLElement | null) {
+  private _showModal(element: HTMLElement | null) {
     if (element) {
       element.style.display = 'block';
     }
   }
 
-  _initModalListeners(element: HTMLElement | null) {
+  private _initModalListeners(element: HTMLElement | null) {
     const currentModal = element;
     if (currentModal) {
       document.body.addEventListener('click', (e) => {
@@ -128,24 +128,24 @@ class InputForm extends Component {
     }
   }
 
-  _showMenu(element: HTMLElement | null) {
+  private _showMenu(element: HTMLElement | null) {
     if (element) {
       element.style.display = 'flex';
     }
   }
 
-  _hideMenu(element: HTMLElement | null) {
+  private _hideMenu(element: HTMLElement | null) {
     if (element) {
       element.style.display = 'none';
     }
   }
 
-  onSubmit(e: Event) {
+  private _onSubmit(e: Event) {
     e.preventDefault();
     console.log('Sended');
   }
 
-  render() {
+  protected render() {
     return this.compile(inputsFormTemplate, { ...this.props });
   }
 }

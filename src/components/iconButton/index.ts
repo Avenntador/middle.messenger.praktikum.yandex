@@ -14,7 +14,7 @@ class IconButton extends Component<IconButtonProps> {
     super({ ...props });
   }
 
-  render() {
+  protected render() {
     return this.compile(buttonTemplate, this.props);
   }
 }

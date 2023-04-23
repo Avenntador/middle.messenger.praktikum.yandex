@@ -15,7 +15,7 @@ class Auth extends Component {
     });
   }
 
-  changePage(route: string) {
+  public changePage(route: string) {
     switch (route) {
       case 'login': {
         this.setProps({ content: new LoginPage() });
@@ -32,7 +32,7 @@ class Auth extends Component {
     }
   }
 
-  render() {
+  protected render() {
     return this.compile(AuthTemplate, { ...this.props });
   }
 }

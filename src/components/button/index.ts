@@ -14,7 +14,7 @@ class Button extends Component<ButtonProps> {
     super({ ...props });
   }
 
-  render() {
+  protected render() {
     return this.compile(buttonTemplate, this.props);
   }
 }

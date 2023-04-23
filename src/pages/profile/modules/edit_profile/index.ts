@@ -8,7 +8,7 @@ class EditProfilePage extends Component {
     super({});
   }
 
-  init() {
+  protected init() {
     this.children.emailInput = new Input({
       label: 'Почта',
       type: 'email',
@@ -74,7 +74,7 @@ class EditProfilePage extends Component {
       type: 'submit',
       label: 'Сохранить',
       events: {
-        click: this.onSubmit,
+        click: this._onSubmit,
       },
       styles: {
         button: 'profile__submit button button_contained',
@@ -82,12 +82,12 @@ class EditProfilePage extends Component {
     });
   }
 
-  onSubmit(e: Event) {
+  private _onSubmit(e: Event) {
     e.preventDefault();
     console.log('Поменял профиль');
   }
 
-  render() {
+  protected render() {
     return this.compile(editProfileTemplate, { ...this.props });
   }
 }

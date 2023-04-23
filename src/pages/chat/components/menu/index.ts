@@ -14,7 +14,7 @@ class Menu extends Component<MenuProps> {
     super({ ...props });
   }
 
-  render() {
+  protected render() {
     return this.compile(MenuTemplate, this.props);
   }
 }

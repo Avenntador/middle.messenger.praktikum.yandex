@@ -8,7 +8,7 @@ class RegisterPage extends Component {
     super({});
   }
 
-  init() {
+  protected init() {
     this.children.emailInput = new Input({
       label: 'Почта',
       type: 'email',
@@ -80,7 +80,7 @@ class RegisterPage extends Component {
         button: 'button button_contained button_fullwidth auth-form__submit',
       },
       events: {
-        click: this.onSubmit,
+        click: this._onSubmit,
       },
     });
 
@@ -93,12 +93,12 @@ class RegisterPage extends Component {
     });
   }
 
-  onSubmit(e: Event) {
+  private _onSubmit(e: Event) {
     e.preventDefault();
     console.log('Registration submit');
   }
 
-  render() {
+  protected render() {
     return this.compile(registerTemplate, { ...this.props });
   }
 }

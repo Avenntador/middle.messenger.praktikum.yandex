@@ -17,7 +17,7 @@ class Modal extends Component<ModalProps> {
     super({ ...props });
   }
 
-  init() {
+  protected init() {
     this.children.inputText = new Input({
       label: 'Логин',
       name: 'user-action',
@@ -38,7 +38,7 @@ class Modal extends Component<ModalProps> {
       },
       events: {
         change: (e: Event) => {
-          this.onChangeInputHandler(e);
+          this._onChangeInputHandler(e);
         },
       },
     });
@@ -50,25 +50,25 @@ class Modal extends Component<ModalProps> {
         button: 'button button_contained button_fullwidth',
       },
       events: {
-        click: this.onSubmit,
+        click: this._onSubmit,
       },
     });
   }
 
-  onChangeInputHandler(e: Event) {
+  private _onChangeInputHandler(e: Event) {
     const target = e.target as HTMLInputElement;
     if (target.files) {
       const fileName = target.files[0].name;
-      this.children.inputFile.setProps({ fileInputLabel: fileName });
+      (this.children.inputFile as Component).setProps({ fileInputLabel: fileName });
     }
   }
 
-  onSubmit(e: any) {
+  private _onSubmit(e: any) {
     e.preventDefault();
     console.log('User action');
   }
 
-  render() {
+  protected render() {
     return this.compile(modalTemplate, { ...this.props });
   }
 }

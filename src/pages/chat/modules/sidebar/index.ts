@@ -15,7 +15,7 @@ class Sidebar extends Component<SidebarProps> {
     });
   }
 
-  init() {
+  protected init() {
     this.children.openProfileButton = new Button({
       type: 'button',
       label: 'Профиль >',
@@ -35,7 +35,7 @@ class Sidebar extends Component<SidebarProps> {
     });
   }
 
-  render() {
+  protected render() {
     return this.compile(SidebarTemplate, { ...this.props });
   }
 }

@@ -14,7 +14,7 @@ class Message extends Component<MessageProps> {
     super({ ...props });
   }
 
-  render() {
+  protected render() {
     return this.compile(MessageTemplate, { ...this.props });
   }
 }

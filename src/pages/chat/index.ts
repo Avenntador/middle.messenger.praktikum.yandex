@@ -124,14 +124,14 @@ class Chat extends Component {
     super({});
   }
 
-  init() {
+  protected init() {
     this.children.sidebar = new Sidebar({
       chats: this._createChats(mockChats),
     });
     this.children.chatContent = new ChatContent({ isLoaded: false });
   }
 
-  _createChats(chats: ChatListItemProps[]) {
+  private _createChats(chats: ChatListItemProps[]) {
     return chats.map(
       (chat) => new ChatListItem({
         ...chat,
@@ -144,7 +144,7 @@ class Chat extends Component {
     );
   }
 
-  _selectChat(chat: ChatListItemProps) {
+  private _selectChat(chat: ChatListItemProps) {
     mockMessages.forEach((fetchMessages) => {
       if (fetchMessages.id === chat.id) {
         (this.children.chatContent as Component).setProps({
@@ -156,7 +156,7 @@ class Chat extends Component {
     });
   }
 
-  render() {
+  protected render() {
     return this.compile(ChatTemplate, { ...this.props });
   }
 }

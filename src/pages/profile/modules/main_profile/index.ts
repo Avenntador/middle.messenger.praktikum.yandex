@@ -14,7 +14,7 @@ class MainProfilePage extends Component<MainProfilePageProps> {
     });
   }
 
-  init() {
+  protected init() {
     this.children.emailInput = new Input({
       label: 'Почта',
       type: 'email',
@@ -105,7 +105,7 @@ class MainProfilePage extends Component<MainProfilePageProps> {
     });
   }
 
-  render() {
+  protected render() {
     return this.compile(mainProfileTemplate, { ...this.props });
   }
 }

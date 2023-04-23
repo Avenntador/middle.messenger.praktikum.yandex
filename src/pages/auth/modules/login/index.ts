@@ -8,7 +8,7 @@ class LoginPage extends Component {
     super({});
   }
 
-  init() {
+  protected init() {
     this.children.loginInput = new Input({
       label: 'Логин',
       type: 'text',
@@ -36,7 +36,7 @@ class LoginPage extends Component {
         button: 'button button_contained button_fullwidth auth-form__submit',
       },
       events: {
-        click: this.onSubmit,
+        click: this._onSubmit,
       },
     });
 
@@ -49,12 +49,12 @@ class LoginPage extends Component {
     });
   }
 
-  onSubmit(e: Event) {
+  private _onSubmit(e: Event) {
     e.preventDefault();
     console.log('onSubmit');
   }
 
-  render() {
+  protected render() {
     return this.compile(loginTemplate, { ...this.props });
   }
 }

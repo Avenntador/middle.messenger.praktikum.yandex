@@ -12,7 +12,7 @@ class Correspondence extends Component<CorrespondenceProps> {
     super({ ...props });
   }
 
-  render() {
+  protected render() {
     return this.compile(CorrespondenceTeamplate, { ...this.props });
   }
 }

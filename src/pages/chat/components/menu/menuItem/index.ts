@@ -13,7 +13,7 @@ class MenuItem extends Component<MenuItemProps> {
     super({ ...props });
   }
 
-  render() {
+  protected render() {
     return this.compile(MenuItemTemplate, this.props);
   }
 }
