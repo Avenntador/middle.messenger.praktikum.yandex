@@ -1,6 +1,7 @@
-<label class='{{styles.label}}' for={{name}}>
-   {{label}}
-    <input {{#if isDisabled}}disabled{{/if}} placeholder="{{placeholder}}" type={{type}} 
-        id={{name}} name={{name}} class='{{styles.input}}' />
-    {{#if fileInputLabel}}<p class="input__file-name">{{fileInputLabel}}</p>{{/if}}
-</label>
+
+
+<input {{#if isDisabled}}disabled{{/if}} placeholder="{{placeholder}}" type={{type}} 
+    id={{name}} name={{name}} class='{{styles.input}}' />
+{{!-- {{#if fileInputLabel}}<p class="input__file-name">{{fileInputLabel}}</p>{{/if}} 
+
+   {{#if error}}<span class="input__error">{{errorMessage}}</span>{{/if}} --}}

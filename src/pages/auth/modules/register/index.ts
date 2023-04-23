@@ -10,65 +10,51 @@ class RegisterPage extends Component {
 
   protected init() {
     this.children.emailInput = new Input({
-      label: 'Почта',
       type: 'email',
       name: 'email',
       styles: {
-        label: 'input__label',
         input: 'input input_bottom-border auth-form__input',
       },
     });
     this.children.loginInput = new Input({
-      label: 'Логин',
       type: 'password',
       name: 'login',
       styles: {
-        label: 'input__label',
         input: 'input input_bottom-border auth-form__input',
       },
     });
     this.children.nameInput = new Input({
-      label: 'Имя',
       type: 'text',
       name: 'first_name',
       styles: {
-        label: 'input__label',
         input: 'input input_bottom-border auth-form__input',
       },
     });
     this.children.secondNameInput = new Input({
-      label: 'Фамилия',
       type: 'text',
       name: 'second_name',
       styles: {
-        label: 'input__label',
         input: 'input input_bottom-border auth-form__input',
       },
     });
     this.children.phoneInput = new Input({
-      label: 'Телефон',
       type: 'number',
       name: 'phone',
       styles: {
-        label: 'input__label',
         input: 'input input_bottom-border auth-form__input',
       },
     });
     this.children.passwordInput = new Input({
-      label: 'Пароль',
       type: 'password',
-      name: 'phone',
+      name: 'password',
       styles: {
-        label: 'input__label',
         input: 'input input_bottom-border auth-form__input',
       },
     });
     this.children.passwordRepeatInput = new Input({
-      label: 'Пароль (еще раз)',
       type: 'password',
       name: 'passwordRepeat',
       styles: {
-        label: 'input__label',
         input: 'input input_bottom-border auth-form__input',
       },
     });

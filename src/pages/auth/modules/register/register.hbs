@@ -2,13 +2,34 @@
     <form id="#" class="auth-form">
         <h1 class="auth-form__title">Регистрация</h1>
         <div class="auth-form__inputs">
-            {{{emailInput}}}
-            {{{loginInput}}}
-            {{{nameInput}}}
-            {{{secondNameInput}}}
-            {{{phoneInput}}}
-            {{{passwordInput}}}
-            {{{passwordRepeatInput}}}
+            <label class='input__label' for="email">
+                Почта
+                 {{{emailInput}}}
+            </label>
+                <label class='input__label' for="login">
+                Логин
+                {{{loginInput}}}
+            </label>
+                <label class='input__label' for="first_name">
+                Имя
+                {{{nameInput}}}
+            </label>
+            <label class='input__label' for="second_name">
+                Фамилия
+                {{{secondNameInput}}}
+            </label>
+            <label class='input__label' for="phone">
+                Телефон
+                {{{phoneInput}}}
+            </label>
+            <label class='input__label' for="password">
+                Пароль
+                {{{passwordInput}}}
+            </label>
+            <label class='input__label' for="passwordRepeat">
+                Пароль (еще раз)
+                {{{passwordRepeatInput}}}
+            </label>
         </div>
 
         <div class="auth-form__buttons">

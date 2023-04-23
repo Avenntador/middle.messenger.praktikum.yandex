@@ -13,32 +13,26 @@ class ChangePasswordPage extends Component {
 
   protected init() {
     this.children.oldPasswordInput = new Input({
-      label: 'Старый пароль',
       type: 'password',
       name: 'oldPassword',
       placeholder: '*********',
       styles: {
-        label: 'profile__input',
         input: 'input input_no-border',
       },
     });
     this.children.newPasswordInput = new Input({
-      label: 'Новый пароль',
       type: 'password',
       name: 'newPassword',
       placeholder: '*********',
       styles: {
-        label: 'profile__input',
         input: 'input input_no-border',
       },
     });
     this.children.newPasswordRepeatInput = new Input({
-      label: 'Повторите новый пароль',
       type: 'password',
       name: 'newPasswordRepeat',
       placeholder: '*********',
       styles: {
-        label: 'profile__input',
         input: 'input input_no-border',
       },
     });

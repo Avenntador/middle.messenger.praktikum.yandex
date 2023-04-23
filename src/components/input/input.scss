@@ -34,4 +34,12 @@
     font-size: 1.4rem;
     text-decoration: none !important;
   }
+
+  &__error {
+    display: block;
+    margin-top: 0.7rem;
+    color: $color-warning;
+    font-size: 0.8rem;
+    font-weight: 400;
+  }
 }
