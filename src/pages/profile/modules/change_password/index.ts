@@ -3,6 +3,9 @@ import Button from '../../../../components/button';
 import Input from '../../../../components/input';
 import changePasswordTemplate from './change_password.hbs';
 
+import Avatar from '../../../../components/avatar';
+import avatarIcon from '../../../../../static/icons/avatarIcon.png';
+
 class ChangePasswordPage extends Component {
   constructor() {
     super({});
@@ -38,6 +41,15 @@ class ChangePasswordPage extends Component {
         label: 'profile__input',
         input: 'input input_no-border',
       },
+    });
+
+    this.children.avatar = new Avatar({
+      avatar: avatarIcon,
+      withModal: false,
+      styles: {
+        avatar: 'profile__avatar avatar avatar_large',
+      },
+      events: {},
     });
 
     this.children.submitButton = new Button({

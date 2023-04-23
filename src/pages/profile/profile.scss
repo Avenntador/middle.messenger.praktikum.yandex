@@ -4,13 +4,12 @@
 .profile__container {
   position: relative;
   display: flex;
+  height: 100%;
+
+  @include d-flex-centerHorizontalVertical;
 }
 
 .profile {
-  position: fixed;
-
-  @include absolute-centerHorizontalVertical;
-
   width: 47rem;
 
   &__avatar {
@@ -80,6 +79,8 @@
   }
 
   &__back-button {
+    position: absolute;
+    left: 0;
     display: flex;
     width: 6.4rem;
     height: 100vh;

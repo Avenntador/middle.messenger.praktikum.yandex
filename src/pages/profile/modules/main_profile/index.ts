@@ -3,6 +3,9 @@ import Button from '../../../../components/button';
 import Input from '../../../../components/input';
 import mainProfileTemplate from './main_profile.hbs';
 
+import Avatar from '../../../../components/avatar';
+import avatarIcon from '../../../../../static/icons/avatarIcon.png';
+
 interface MainProfilePageProps {
   name: string;
 }
@@ -15,6 +18,15 @@ class MainProfilePage extends Component<MainProfilePageProps> {
   }
 
   protected init() {
+    this.children.avatar = new Avatar({
+      avatar: avatarIcon,
+      withModal: false,
+      styles: {
+        avatar: 'profile__avatar avatar avatar_large',
+      },
+      events: {},
+    });
+
     this.children.emailInput = new Input({
       label: 'Почта',
       type: 'email',
