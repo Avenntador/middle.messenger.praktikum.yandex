@@ -14,52 +14,52 @@ class EditProfilePage extends Component {
 
   protected init() {
     this.children.emailInput = new Input({
+      label: 'Почта',
       type: 'email',
       name: 'email',
+      selector: 'input',
       placeholder: 'pochta@gmail.com',
-      styles: {
-        input: 'input input_no-border',
-      },
+      styles: { label: 'profile__input', input: 'input input_no-border' },
     });
     this.children.loginInput = new Input({
+      label: 'Логин',
       type: 'text',
       name: 'login',
       placeholder: 'login',
-      styles: {
-        input: 'input input_no-border',
-      },
+      selector: 'input',
+      styles: { label: 'profile__input', input: 'input input_no-border' },
     });
     this.children.nameInput = new Input({
+      label: 'Имя',
       type: 'text',
       name: 'first_name',
       placeholder: 'Ivan',
-      styles: {
-        input: 'input input_no-border',
-      },
+      selector: 'input',
+      styles: { label: 'profile__input', input: 'input input_no-border' },
     });
     this.children.secondNameInput = new Input({
+      label: 'Фамилия',
       type: 'text',
       name: 'second_name',
       placeholder: 'Ivanov',
-      styles: {
-        input: 'input input_no-border',
-      },
+      selector: 'input',
+      styles: { label: 'profile__input', input: 'input input_no-border' },
     });
     this.children.displayNameInput = new Input({
+      label: 'Имя в чате',
       type: 'text',
       name: 'display_name',
       placeholder: 'Ivan',
-      styles: {
-        input: 'input input_no-border',
-      },
+      selector: 'input',
+      styles: { label: 'profile__input', input: 'input input_no-border' },
     });
     this.children.phoneInput = new Input({
+      label: 'Телефон',
       type: 'number',
       name: 'phone',
       placeholder: '+7(909)9673030',
-      styles: {
-        input: 'input input_no-border',
-      },
+      selector: 'input',
+      styles: { label: 'profile__input', input: 'input input_no-border' },
     });
 
     this.children.avatar = new Avatar({

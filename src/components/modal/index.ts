@@ -19,17 +19,22 @@ class Modal extends Component<ModalProps> {
 
   protected init() {
     this.children.inputText = new Input({
+      label: 'Логин',
       name: 'user-action',
       type: 'text',
+      selector: 'input',
       styles: {
+        label: 'input__label modal__input',
         input: 'input input_bottom-border',
       },
     });
 
     this.children.inputFile = new Input({
+      label: 'Выбрать файл на компьютере',
       type: 'file',
       name: 'modal-input-file',
       styles: {
+        label: 'modal__input-file',
         input: 'modal-input',
       },
       events: {

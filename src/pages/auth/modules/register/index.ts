@@ -10,59 +10,64 @@ class RegisterPage extends Component {
 
   protected init() {
     this.children.emailInput = new Input({
+      label: 'Почта',
       type: 'email',
       name: 'email',
+      selector: 'input',
       styles: {
+        label: 'input__label',
         input: 'input input_bottom-border auth-form__input',
       },
     });
     this.children.loginInput = new Input({
+      label: 'Логин',
       type: 'password',
       name: 'login',
-      styles: {
-        input: 'input input_bottom-border auth-form__input',
-      },
+      selector: 'input',
+      styles: { label: 'input__label', input: 'input input_bottom-border auth-form__input' },
     });
     this.children.nameInput = new Input({
+      label: 'Имя',
       type: 'text',
       name: 'first_name',
-      styles: {
-        input: 'input input_bottom-border auth-form__input',
-      },
+      selector: 'input',
+      styles: { label: 'input__label', input: 'input input_bottom-border auth-form__input' },
     });
     this.children.secondNameInput = new Input({
+      label: 'Фамилия',
       type: 'text',
       name: 'second_name',
-      styles: {
-        input: 'input input_bottom-border auth-form__input',
-      },
+      selector: 'input',
+      styles: { label: 'input__label', input: 'input input_bottom-border auth-form__input' },
     });
     this.children.phoneInput = new Input({
+      label: 'Телефон',
       type: 'number',
       name: 'phone',
-      styles: {
-        input: 'input input_bottom-border auth-form__input',
-      },
+      selector: 'input',
+      styles: { label: 'input__label', input: 'input input_bottom-border auth-form__input' },
     });
     this.children.passwordInput = new Input({
+      label: 'Пароль',
       type: 'password',
       name: 'password',
-      styles: {
-        input: 'input input_bottom-border auth-form__input',
-      },
+      selector: 'input',
+      styles: { label: 'input__label', input: 'input input_bottom-border auth-form__input' },
     });
     this.children.passwordRepeatInput = new Input({
+      label: 'Пароль (еще раз)',
       type: 'password',
       name: 'passwordRepeat',
-      styles: {
-        input: 'input input_bottom-border auth-form__input',
-      },
+      selector: 'input',
+      styles: { label: 'input__label', input: 'input input_bottom-border auth-form__input' },
     });
 
     this.children.submitButton = new Button({
       type: 'submit',
       label: 'Зарегистрироваться',
       styles: {
+        label: 'input__label',
+        selector: 'input',
         button: 'button button_contained button_fullwidth auth-form__submit',
       },
       events: {

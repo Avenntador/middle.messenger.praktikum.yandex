@@ -92,6 +92,7 @@ class InputForm extends Component {
       label: '',
       type: 'text',
       name: 'message',
+      selector: 'input',
       placeholder: 'Сообщение',
       styles: {
         label: 'chat-content__new-message-label',

@@ -2,15 +2,9 @@
     <div class="modal__container">
         <h1>{{title}}</h1>
         {{#if type}}
-            <label class='input__label modal__input' for="user-action">
-                Логин
-                {{{inputText}}}
-            </label>
+            {{{inputText}}}
         {{else}}
-            <label class='modal__input-file' for="modal-input-file">
-                Выбрать файл на компьютере
-                {{{inputFile}}}
-            </label>
+            {{{inputFile}}}
         {{/if}}
         {{{submitButton}}}
     </div>

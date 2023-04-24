@@ -5,13 +5,14 @@ import inputTemplate from './input.hbs';
 interface InputProps {
   name?: string;
   styles?: Record<string, string>;
-  // fileInputLabel?: string;
-  // label?: string;
+  selector?: string;
+  fileInputLabel?: string;
+  label?: string;
   placeholder?: string;
   isDisabled?: boolean;
   type?: string;
-  // error?: boolean;
-  // errorMessage?: string;
+  error?: boolean;
+  errorMessage?: string;
   events?: Record<string, (...args: any) => void>;
 }
 

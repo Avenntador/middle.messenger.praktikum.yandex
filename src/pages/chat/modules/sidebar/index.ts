@@ -27,6 +27,7 @@ class Sidebar extends Component<SidebarProps> {
     this.children.searchInput = new Input({
       type: 'text',
       name: 'chat-search',
+      selector: 'input',
       placeholder: 'Поиск',
       styles: {
         input: 'input input_no-border sidebar__search-chat-input',

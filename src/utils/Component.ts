@@ -75,7 +75,14 @@ class Component<T extends Record<string, any> = any> {
 
     Object.keys(events).forEach((eventName) => {
       if (this._element) {
-        this._element.addEventListener(eventName, events[eventName]);
+        // для навешивания ивента на элемент с wrapperom по селектору
+        if (this.props.selector) {
+          this._element
+            ?.querySelector(this.props.selector)
+            ?.addEventListener(eventName, events[eventName]);
+        } else {
+          this._element.addEventListener(eventName, events[eventName]);
+        }
       }
     });
   }

@@ -10,9 +10,12 @@ class LoginPage extends Component {
 
   protected init() {
     this.children.loginInput = new Input({
+      label: 'Логин',
       type: 'text',
       name: 'login',
+      selector: 'input',
       styles: {
+        label: 'input__label',
         input: 'input input_bottom-border auth-form__input',
       },
       events: {
@@ -23,9 +26,12 @@ class LoginPage extends Component {
     });
 
     this.children.passowrdInput = new Input({
+      label: 'Пароль',
       type: 'password',
       name: 'password',
+      selector: 'input',
       styles: {
+        label: 'input__label',
         input: 'input input_bottom-border auth-form__input',
       },
     });
