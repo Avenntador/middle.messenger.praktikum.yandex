@@ -6,6 +6,7 @@ import arrowLeftIcon from '../../../static/icons/arrowLeftIcon.png';
 import MainProfilePage from './modules/main_profile';
 import EditProfilePage from './modules/edit_profile';
 import ChangePasswordPage from './modules/change_password';
+import onSubmitForm from '../../utils/helpers';
 
 interface ProfileProps {
   content?: Component;
@@ -25,11 +26,15 @@ class Profile extends Component {
         break;
       }
       case 'profile-edit': {
-        this.setProps({ content: new EditProfilePage() });
+        this.setProps({
+          content: new EditProfilePage({}),
+        });
         break;
       }
       case 'profile-change-password': {
-        this.setProps({ content: new ChangePasswordPage() });
+        this.setProps({
+          content: new ChangePasswordPage({}),
+        });
         break;
       }
       default: {

@@ -5,39 +5,80 @@ import changePasswordTemplate from './change_password.hbs';
 
 import Avatar from '../../../../components/avatar';
 import avatarIcon from '../../../../../static/icons/avatarIcon.png';
+import Validator, { FieldsError } from '../../../../utils/Validator';
+import onSubmitForm from '../../../../utils/helpers';
 
-class ChangePasswordPage extends Component {
-  constructor() {
-    super({});
+interface ChangePasswordPageProps {
+  selector?: string;
+  events?: Record<string, (args: any) => void>;
+}
+
+class ChangePasswordPage extends Component<ChangePasswordPageProps> {
+  constructor(props: ChangePasswordPageProps) {
+    super({
+      ...props,
+      events: {
+        submit: (e) => {
+          onSubmitForm(e, e.target, this.children);
+        },
+      },
+    });
   }
 
   protected init() {
-    this.children.oldPasswordInput = new Input({
+    this.children.old_password = new Input({
       label: 'Старый пароль',
       type: 'password',
-      name: 'oldPassword',
+      name: 'old_password',
       selector: 'input',
+      errorMessage: FieldsError.PASSWORD,
       placeholder: '*********',
       styles: {
         label: 'profile__input',
         input: 'input input_no-border',
       },
+      events: {
+        focus: (e) => {
+          Validator.validate('password', this.children.old_password, e.target?.value);
+        },
+        blur: (e) => {
+          Validator.validate('password', this.children.old_password, e.target?.value);
+        },
+      },
     });
-    this.children.newPasswordInput = new Input({
+    this.children.password = new Input({
       label: 'Новый пароль',
       type: 'password',
-      name: 'newPassword',
+      name: 'password',
       selector: 'input',
+      errorMessage: FieldsError.PASSWORD,
       placeholder: '*********',
       styles: { label: 'profile__input', input: 'input input_no-border' },
+      events: {
+        focus: (e) => {
+          Validator.validate('password', this.children.password, e.target?.value);
+        },
+        blur: (e) => {
+          Validator.validate('password', this.children.password, e.target?.value);
+        },
+      },
     });
-    this.children.newPasswordRepeatInput = new Input({
+    this.children.password_repeat = new Input({
       label: 'Повторите новый пароль',
       type: 'password',
-      name: 'newPasswordRepeat',
+      name: 'password_repeat',
       selector: 'input',
+      errorMessage: FieldsError.PASSWORD,
       placeholder: '*********',
       styles: { label: 'profile__input', input: 'input input_no-border' },
+      events: {
+        focus: (e) => {
+          Validator.validate('password', this.children.password_repeat, e.target?.value);
+        },
+        blur: (e) => {
+          Validator.validate('password', this.children.password_repeat, e.target?.value);
+        },
+      },
     });
 
     this.children.avatar = new Avatar({
@@ -52,18 +93,10 @@ class ChangePasswordPage extends Component {
     this.children.submitButton = new Button({
       type: 'submit',
       label: 'Сохранить',
-      events: {
-        click: this._onSubmit,
-      },
       styles: {
         button: 'profile__submit button button_contained ',
       },
     });
-  }
-
-  private _onSubmit(e: Event) {
-    e.preventDefault();
-    console.log('Поменял пароль');
   }
 
   protected render() {

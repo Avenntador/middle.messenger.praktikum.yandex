@@ -1,65 +1,134 @@
-import Component from '../../../../utils/Component';
+import editProfileTemplate from './edit_profile.hbs';
 import Button from '../../../../components/button';
 import Input from '../../../../components/input';
-import editProfileTemplate from './edit_profile.hbs';
 import Modal from '../../../../components/modal';
-
-import avatarIcon from '../../../../../static/icons/avatarIcon.png';
 import Avatar from '../../../../components/avatar';
 
-class EditProfilePage extends Component {
-  constructor() {
-    super({});
+import Validator, { FieldsError } from '../../../../utils/Validator';
+import Component from '../../../../utils/Component';
+import onSubmitForm from '../../../../utils/helpers';
+
+import avatarIcon from '../../../../../static/icons/avatarIcon.png';
+
+interface EditProfilePageProps {
+  selector?: string;
+  events?: Record<string, (args: any) => void>;
+}
+
+class EditProfilePage extends Component<EditProfilePageProps> {
+  constructor(props: EditProfilePageProps) {
+    super({
+      ...props,
+      events: {
+        submit: (e) => {
+          onSubmitForm(e, e.srcElement, this.children);
+        },
+      },
+    });
   }
 
   protected init() {
-    this.children.emailInput = new Input({
+    this.children.email = new Input({
       label: 'Почта',
       type: 'email',
       name: 'email',
       selector: 'input',
+      errorMessage: FieldsError.EMAIL,
       placeholder: 'pochta@gmail.com',
       styles: { label: 'profile__input', input: 'input input_no-border' },
+      events: {
+        focus: (e) => {
+          Validator.validate('email', this.children.email, e.target?.value);
+        },
+        blur: (e) => {
+          Validator.validate('email', this.children.email, e.target?.value);
+        },
+      },
     });
-    this.children.loginInput = new Input({
+    this.children.login = new Input({
       label: 'Логин',
       type: 'text',
       name: 'login',
       placeholder: 'login',
       selector: 'input',
+      errorMessage: FieldsError.LOGIN,
       styles: { label: 'profile__input', input: 'input input_no-border' },
+      events: {
+        focus: (e) => {
+          Validator.validate('login', this.children.login, e.target?.value);
+        },
+        blur: (e) => {
+          Validator.validate('login', this.children.login, e.target?.value);
+        },
+      },
     });
-    this.children.nameInput = new Input({
+    this.children.first_name = new Input({
       label: 'Имя',
       type: 'text',
       name: 'first_name',
       placeholder: 'Ivan',
       selector: 'input',
+      errorMessage: FieldsError.NAME,
       styles: { label: 'profile__input', input: 'input input_no-border' },
+      events: {
+        focus: (e) => {
+          Validator.validate('first_name', this.children.first_name, e.target?.value);
+        },
+        blur: (e) => {
+          Validator.validate('first_name', this.children.first_name, e.target?.value);
+        },
+      },
     });
-    this.children.secondNameInput = new Input({
+    this.children.second_name = new Input({
       label: 'Фамилия',
       type: 'text',
       name: 'second_name',
       placeholder: 'Ivanov',
       selector: 'input',
+      errorMessage: FieldsError.NAME,
       styles: { label: 'profile__input', input: 'input input_no-border' },
+      events: {
+        focus: (e) => {
+          Validator.validate('second_name', this.children.second_name, e.target?.value);
+        },
+        blur: (e) => {
+          Validator.validate('second_name', this.children.second_name, e.target?.value);
+        },
+      },
     });
-    this.children.displayNameInput = new Input({
+    this.children.display_name = new Input({
       label: 'Имя в чате',
       type: 'text',
       name: 'display_name',
       placeholder: 'Ivan',
       selector: 'input',
+      errorMessage: FieldsError.NAME,
       styles: { label: 'profile__input', input: 'input input_no-border' },
+      events: {
+        focus: (e) => {
+          Validator.validate('name', this.children.display_name, e.target?.value);
+        },
+        blur: (e) => {
+          Validator.validate('name', this.children.display_name, e.target?.value);
+        },
+      },
     });
-    this.children.phoneInput = new Input({
+    this.children.phone = new Input({
       label: 'Телефон',
       type: 'number',
       name: 'phone',
       placeholder: '+7(909)9673030',
       selector: 'input',
+      errorMessage: FieldsError.PHONE,
       styles: { label: 'profile__input', input: 'input input_no-border' },
+      events: {
+        focus: (e) => {
+          Validator.validate('phone', this.children.phone, e.target?.value);
+        },
+        blur: (e) => {
+          Validator.validate('phone', this.children.phone, e.target?.value);
+        },
+      },
     });
 
     this.children.avatar = new Avatar({
@@ -79,7 +148,7 @@ class EditProfilePage extends Component {
     });
 
     this.children.modal = new Modal({
-      type: false,
+      type: 'file',
       title: 'Загрузите файл',
       buttonTitle: 'Поменять',
     });
@@ -87,9 +156,6 @@ class EditProfilePage extends Component {
     this.children.submitButton = new Button({
       type: 'submit',
       label: 'Сохранить',
-      events: {
-        click: this._onSubmit,
-      },
       styles: {
         button: 'profile__submit button button_contained',
       },
@@ -111,11 +177,6 @@ class EditProfilePage extends Component {
 
   private _showModal(element: HTMLElement) {
     element.style.display = 'block';
-  }
-
-  private _onSubmit(e: Event) {
-    e.preventDefault();
-    console.log('Поменял профиль');
   }
 
   protected render() {
