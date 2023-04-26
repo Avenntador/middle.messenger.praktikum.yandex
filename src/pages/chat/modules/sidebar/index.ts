@@ -32,6 +32,11 @@ class Sidebar extends Component<SidebarProps> {
       styles: {
         input: 'input input_no-border sidebar__search-chat-input',
       },
+      events: {
+        keyup: (e) => {
+          console.log('Фильтруем - ', e.target.value);
+        },
+      },
     });
   }
 

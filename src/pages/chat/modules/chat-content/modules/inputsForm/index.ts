@@ -13,6 +13,8 @@ import MenuItem from '../../../../components/menu/menuItem';
 import Modal from '../../../../../../components/modal';
 
 class InputForm extends Component {
+  private _messageText = '';
+
   constructor() {
     super({});
   }
@@ -31,6 +33,7 @@ class InputForm extends Component {
         },
       },
     });
+
     this.children.attachMenu = new Menu({
       menuItems: [
         new MenuItem({
@@ -84,7 +87,14 @@ class InputForm extends Component {
       icon: sendIcon,
       styles: { button: 'icon-button ' },
       events: {
-        click: this._onSubmit,
+        click: (e) => {
+          e.preventDefault();
+          if (this._messageText.trim() !== '') {
+            console.log('Посылаем сообщение', this._messageText);
+            this._messageText = '';
+            (this.children.newMessageInput as Input).clearInput();
+          }
+        },
       },
     });
 
@@ -98,16 +108,23 @@ class InputForm extends Component {
         label: 'chat-content__new-message-label',
         input: 'input chat-content__new-message',
       },
+      events: {
+        keyup: (e) => {
+          this._messageText = e.target.value;
+        },
+      },
     });
 
     this.children.addFileModal = new Modal({
-      type: false,
+      type: 'file',
       title: 'Добавить файл',
       buttonTitle: 'Добавить',
     });
+
     this.setProps({
       attachIcon,
     });
+
     this._initModalListeners(this.children.attachMenu.getContent());
     this._initModalListeners(this.children.addFileModal.getContent());
   }
@@ -139,11 +156,6 @@ class InputForm extends Component {
     if (element) {
       element.style.display = 'none';
     }
-  }
-
-  private _onSubmit(e: Event) {
-    e.preventDefault();
-    console.log('Sended');
   }
 
   protected render() {
