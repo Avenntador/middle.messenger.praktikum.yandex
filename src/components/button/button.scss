@@ -1,0 +1,34 @@
+@use 'sass/abstracts/variables' as *;
+
+.button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: $default-font-size;
+  font-weight: 500;
+
+  &_contained {
+    height: 3.7rem;
+    border-radius: 0.8rem;
+    background-color: $color-primary;
+    color: #ffff;
+  }
+
+  &_outlined {
+    color: $color-primary;
+    font-size: 1.1rem;
+  }
+
+  &_featured::after {
+    content: '\2807';
+    font-size: 2rem;
+  }
+
+  &_warning {
+    color: $color-warning;
+  }
+
+  &_fullwidth {
+    width: 100%;
+  }
+}
