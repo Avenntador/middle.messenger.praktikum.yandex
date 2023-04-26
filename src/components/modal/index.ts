@@ -6,10 +6,9 @@ import Input from '../input';
 import Button from '../button';
 
 interface ModalProps {
-  // default - input text else file
-  type?: boolean;
   title: string;
   buttonTitle: string;
+  type?: string;
 }
 
 class Modal extends Component<ModalProps> {
@@ -18,9 +17,9 @@ class Modal extends Component<ModalProps> {
   }
 
   protected init() {
-    this.children.inputText = new Input({
+    this.children.login = new Input({
       label: 'Логин',
-      name: 'user-action',
+      name: 'modal-login',
       type: 'text',
       selector: 'input',
       styles: {
