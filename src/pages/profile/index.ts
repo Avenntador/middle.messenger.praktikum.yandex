@@ -6,7 +6,6 @@ import arrowLeftIcon from '../../../static/icons/arrowLeftIcon.png';
 import MainProfilePage from './modules/main_profile';
 import EditProfilePage from './modules/edit_profile';
 import ChangePasswordPage from './modules/change_password';
-import onSubmitForm from '../../utils/helpers';
 
 interface ProfileProps {
   content?: Component;
