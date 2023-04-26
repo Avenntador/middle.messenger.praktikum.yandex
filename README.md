@@ -1,5 +1,7 @@
 # Проект первого модуля - мессенджер
 
+## 2 Sprint pull request - https://github.com/Avenntador/middle.messenger.praktikum.yandex/pull/13
+
 ## 1 спринт
 
 ## UI - https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0-1
