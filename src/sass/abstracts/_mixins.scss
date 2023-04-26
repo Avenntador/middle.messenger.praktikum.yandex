@@ -1,10 +1,10 @@
-@mixin absolute-centerHorizontalVertical {
+@mixin absolute-center-horizontal-vertical {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-@mixin d-flex-centerHorizontalVertical {
+@mixin d-flex-center-horizontal-vertical {
   align-items: center;
   justify-content: center;
 }

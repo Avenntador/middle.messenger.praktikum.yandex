@@ -6,7 +6,7 @@
   display: flex;
   height: 100%;
 
-  @include d-flex-centerHorizontalVertical;
+  @include d-flex-center-horizontal-vertical;
 }
 
 .profile {
@@ -35,7 +35,7 @@
       opacity: 0;
       text-align: center;
 
-      @include d-flex-centerHorizontalVertical;
+      @include d-flex-center-horizontal-vertical;
 
       &:hover {
         opacity: 1;
@@ -88,7 +88,7 @@
     background-color: $background-color-secondary;
     cursor: pointer;
 
-    @include d-flex-centerHorizontalVertical;
+    @include d-flex-center-horizontal-vertical;
 
     &:hover {
       background-color: $background-color-primary;
