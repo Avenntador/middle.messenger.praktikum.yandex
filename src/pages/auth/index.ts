@@ -18,11 +18,15 @@ class Auth extends Component {
   public changePage(route: string) {
     switch (route) {
       case 'login': {
-        this.setProps({ content: new LoginPage() });
+        this.setProps({
+          content: new LoginPage({}),
+        });
         break;
       }
       case 'register': {
-        this.setProps({ content: new RegisterPage() });
+        this.setProps({
+          content: new RegisterPage({}),
+        });
         break;
       }
 

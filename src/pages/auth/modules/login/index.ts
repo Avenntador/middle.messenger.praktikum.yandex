@@ -1,38 +1,66 @@
-import Component from '../../../../utils/Component';
+import loginTemplate from './login.hbs';
 import Button from '../../../../components/button';
 import Input from '../../../../components/input';
-import loginTemplate from './login.hbs';
+import Component from '../../../../utils/Component';
+import Validator, { FieldsError } from '../../../../utils/Validator';
+import onSubmitForm from '../../../../utils/helpers';
 
-class LoginPage extends Component {
-  constructor() {
-    super({});
+interface LoginPageProps {
+  selector?: string;
+  events?: Record<string, (args: any) => void>;
+}
+
+class LoginPage extends Component<LoginPageProps> {
+  constructor(props: LoginPageProps) {
+    super({
+      ...props,
+      selector: 'form',
+      events: {
+        submit: (e) => {
+          onSubmitForm(e, e.srcElement, this.children);
+        },
+      },
+    });
   }
 
   protected init() {
-    this.children.loginInput = new Input({
+    this.children.login = new Input({
       label: 'Логин',
       type: 'text',
       name: 'login',
       selector: 'input',
+      errorMessage: FieldsError.LOGIN,
       styles: {
         label: 'input__label',
         input: 'input input_bottom-border auth-form__input',
       },
       events: {
         focus: (e) => {
-          console.log('here');
+          Validator.validate('login', this.children.login, e.target?.value);
+        },
+        blur: (e) => {
+          Validator.validate('login', this.children.login, e.target?.value);
         },
       },
     });
 
-    this.children.passowrdInput = new Input({
+    this.children.password = new Input({
       label: 'Пароль',
       type: 'password',
       name: 'password',
       selector: 'input',
+      errorMessage: FieldsError.PASSWORD,
       styles: {
         label: 'input__label',
         input: 'input input_bottom-border auth-form__input',
+      },
+      events: {
+        focus: (e) => {
+          Validator.validate('password', this.children.password, e.target?.value);
+        },
+        blur: (e) => {
+          Validator.validate('password', this.children.password, e.target?.value);
+        },
       },
     });
 
@@ -41,9 +69,6 @@ class LoginPage extends Component {
       label: 'Авторизоваться',
       styles: {
         button: 'button button_contained button_fullwidth auth-form__submit',
-      },
-      events: {
-        click: this._onSubmit,
       },
     });
 
@@ -54,11 +79,6 @@ class LoginPage extends Component {
         button: 'button button_outlined button_fullwidth auth-form__sign',
       },
     });
-  }
-
-  private _onSubmit(e: Event) {
-    e.preventDefault();
-    console.log('onSubmit');
   }
 
   protected render() {
