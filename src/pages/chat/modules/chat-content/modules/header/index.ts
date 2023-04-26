@@ -82,12 +82,10 @@ class Header extends Component<HeaderProps> {
     });
 
     this.children.addUserModal = new Modal({
-      type: true,
       title: 'Добавить пользователя',
       buttonTitle: 'Добавить',
     });
     this.children.deleteUserModal = new Modal({
-      type: true,
       title: 'Удалить пользователя',
       buttonTitle: 'Удалить',
     });

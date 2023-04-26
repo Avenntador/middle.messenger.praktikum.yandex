@@ -113,7 +113,8 @@ class Component<T extends Record<string, any> = any> {
     this.eventBus().emit(Component.EVENTS.FLOW_RENDER);
   }
 
-  protected componentDidUpdate(oldProps: T, newProps: T) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  protected componentDidUpdate(_oldProps: T, _newProps: T) {
     return true;
   }
 
