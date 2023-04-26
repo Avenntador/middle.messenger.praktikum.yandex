@@ -132,6 +132,7 @@ class Component<T extends Record<string, any> = any> {
 
     if (this._element && newElement) {
       // убираем template обертку над шаблоном
+
       this._element.replaceWith(newElement);
     }
     this._element = newElement;
