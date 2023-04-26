@@ -39,7 +39,7 @@
     opacity: 0;
     text-align: center;
 
-    @include d-flex-centerHorizontalVertical;
+    @include d-flex-center-horizontal-vertical;
 
     &:hover {
       opacity: 1;
