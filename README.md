@@ -1,6 +1,6 @@
 # Проект первого модуля - мессенджер
 
-## 2 Sprint pull request - https://github.com/Avenntador/middle.messenger.praktikum.yandex/pull/13
+## 2 Sprint pull request - https://github.com/Avenntador/middle.messenger.praktikum.yandex/pull/15
 
 ## 1 спринт
 
