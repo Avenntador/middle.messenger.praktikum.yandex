@@ -12,6 +12,7 @@ type Options = {
 };
 
 type QueryStringifyType = string | Record<string, string>;
+type HTTPMethod = (url: string, options?: Options) => Promise<unknown>;
 
 function queryStringify(data: QueryStringifyType): string {
   if (typeof data !== 'object') {
@@ -26,21 +27,19 @@ function queryStringify(data: QueryStringifyType): string {
 }
 
 class Http {
-  get<TResponse>(url: string, data: unknown): Promise<TResponse> {
-    return this.request(url, { method: METHOD.GET, data });
-  }
+  get: HTTPMethod = (url, data) => this.request(url, { method: METHOD.GET, data });
 
-  post<TResponse>(url: string, data: unknown): Promise<TResponse> {
+  post: HTTPMethod = (url, data) => {
     return this.request(url, { method: METHOD.POST, data });
-  }
+  };
 
-  put<TResponse>(url: string, data: unknown): Promise<TResponse> {
+  put: HTTPMethod = (url, data) => {
     return this.request(url, { method: METHOD.PUT, data });
-  }
+  };
 
-  delete<TResponse>(url: string, data: unknown): Promise<TResponse> {
+  delete: HTTPMethod = (url, data) => {
     return this.request(url, { method: METHOD.DELETE, data });
-  }
+  };
 
   request<TResponse>(url: string, options: Options = { method: METHOD.GET }): Promise<TResponse> {
     return new Promise((resolve, reject) => {
