@@ -1,8 +1,5 @@
 # Проект первого модуля - мессенджер
 
-### UI - https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0-1
-### Деплой на Netlify - https://bucolic-cascaron-d42cc8.netlify.app/
-
 ## 2 спринт
 
 ### Выполнены все пункты из чек листа второго спринта:
