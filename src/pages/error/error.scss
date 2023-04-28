@@ -1,16 +1,17 @@
-@use "sass/abstracts/mixins" as *;
-@use "sass/abstracts/variables" as *;
+@use 'sass/abstracts/mixins' as *;
+@use 'sass/abstracts/variables' as *;
 
 .error {
-  font-weight: 500;
-  color: $font-color-primary;
-  text-align: center;
   position: absolute;
-  @include absolute-centerHorizontalVertical;
+  color: $font-color-primary;
+  font-weight: 500;
+  text-align: center;
+
+  @include absolute-center-horizontal-vertical;
 
   &__title {
-    font-size: 4rem;
     margin-bottom: 4rem;
+    font-size: 4rem;
   }
 
   &__message {

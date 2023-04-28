@@ -1,0 +1,9 @@
+<div class="input-wrap">
+    <label class={{styles.label}} for={{name}}>
+        {{label}}     
+    <input {{#if isDisabled}}disabled{{/if}} placeholder="{{placeholder}}" type={{type}} 
+        id={{name}} name={{name}} class='{{styles.input}}' />
+     </label>
+     {{#if fileInputLabel}}<p class="input__file-name">{{fileInputLabel}}</p>{{/if}}
+    <span class="error-message">{{errorMessage}}</span>
+</div>
