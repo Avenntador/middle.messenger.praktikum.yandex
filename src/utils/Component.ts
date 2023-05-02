@@ -62,16 +62,6 @@ class Component<T extends Record<string, any> = any> {
     eventBus.on(Component.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  private _removeEvents() {
-    const { events = {} } = this.props;
-
-    Object.keys(events).forEach((eventName) => {
-      if (this._element) {
-        this._element.removeEventListener(eventName, events[eventName]);
-      }
-    });
-  }
-
   private _init() {
     this.init();
 
@@ -93,6 +83,16 @@ class Component<T extends Record<string, any> = any> {
         } else {
           this._element.addEventListener(eventName, events[eventName]);
         }
+      }
+    });
+  }
+
+  private _removeEvents() {
+    const { events = {} } = this.props;
+
+    Object.keys(events).forEach((eventName) => {
+      if (this._element) {
+        this._element.removeEventListener(eventName, events[eventName]);
       }
     });
   }
