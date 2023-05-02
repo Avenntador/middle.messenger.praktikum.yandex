@@ -1,10 +1,19 @@
 import Component from './Component';
 
-const renderDom = (container: HTMLElement, element: Component) => {
-  container.innerHTML = '';
-  if (element.getContent()) {
-    container.append(element.getContent() as Node);
+const renderDom = (query: string, element: Component) => {
+  const root = document.querySelector(query);
+
+  if (root) {
+    root.innerHTML = '';
+    if (element.getContent()) {
+      root.append(element.getContent() as Node);
+      element.dispatchComponentDidMount();
+    }
+  } else {
+    throw new Error(`root not found by selector "${query}"`);
   }
+
+  return root;
 };
 
 export default renderDom;
