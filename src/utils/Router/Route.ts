@@ -26,6 +26,10 @@ class Route {
     if (!this.block) {
       this.block = new this.BlockClass({});
 
+      if (this.block.changePage) {
+        this.block.changePage(this.pathname);
+      }
+
       renderDom(this.query, this.block);
     }
   }

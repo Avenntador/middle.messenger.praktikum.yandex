@@ -3,6 +3,7 @@ import SidebarTemplate from './sidebar.hbs';
 import Button from '../../../../components/button';
 import Input from '../../../../components/input';
 import ChatListItem from './chatListItem';
+import Router from '../../../../utils/Router';
 
 interface SidebarProps {
   chats: ChatListItem[];
@@ -21,6 +22,9 @@ class Sidebar extends Component<SidebarProps> {
       label: 'Профиль >',
       styles: {
         button: 'button button_outlined sidebar__user-profile-button',
+      },
+      events: {
+        click: () => Router.go('/settings'),
       },
     });
 

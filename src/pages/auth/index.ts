@@ -17,13 +17,13 @@ class Auth extends Component {
 
   public changePage(route: string) {
     switch (route) {
-      case 'login': {
+      case '/': {
         this.setProps({
           content: new LoginPage({}),
         });
         break;
       }
-      case 'register': {
+      case '/sign-up': {
         this.setProps({
           content: new RegisterPage({}),
         });

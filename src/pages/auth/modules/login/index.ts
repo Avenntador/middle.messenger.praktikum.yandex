@@ -4,6 +4,7 @@ import Input from '../../../../components/input';
 import Component from '../../../../utils/Component';
 import Validator, { FieldsError } from '../../../../utils/Validator';
 import onSubmitForm from '../../../../utils/helpers';
+import Router from '../../../../utils/Router';
 
 interface LoginPageProps {
   selector?: string;
@@ -77,6 +78,9 @@ class LoginPage extends Component<LoginPageProps> {
       label: 'Нет аккаунта?',
       styles: {
         button: 'button button_outlined button_fullwidth auth-form__sign',
+      },
+      events: {
+        click: () => Router.go('/sign-up'),
       },
     });
   }

@@ -196,6 +196,8 @@ class Component<T extends Record<string, any> = any> {
     return fragment.content;
   }
 
+  public changePage(pathname: string) {}
+
   public getContent() {
     return this.element;
   }

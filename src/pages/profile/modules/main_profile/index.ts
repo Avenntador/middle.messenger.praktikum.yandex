@@ -5,6 +5,7 @@ import mainProfileTemplate from './main_profile.hbs';
 
 import Avatar from '../../../../components/avatar';
 import avatarIcon from '../../../../../static/icons/avatarIcon.png';
+import Router from '../../../../utils/Router';
 
 interface MainProfilePageProps {
   name: string;
@@ -88,12 +89,18 @@ class MainProfilePage extends Component<MainProfilePageProps> {
       styles: {
         button: 'button button_outlined',
       },
+      events: {
+        click: () => Router.go('/settings-edit'),
+      },
     });
     this.children.changePasswordButton = new Button({
       type: 'button',
       label: 'Изменить пароль',
       styles: {
         button: 'button button_outlined',
+      },
+      events: {
+        click: () => Router.go('/settings-change-password'),
       },
     });
     this.children.logoutButton = new Button({

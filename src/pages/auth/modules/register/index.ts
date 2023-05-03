@@ -4,6 +4,7 @@ import Input from '../../../../components/input';
 import registerTemplate from './register.hbs';
 import Validator, { FieldsError } from '../../../../utils/Validator';
 import onSubmitForm from '../../../../utils/helpers';
+import Router from '../../../../utils/Router';
 
 interface RegisterPageProps {
   selector?: string;
@@ -155,6 +156,9 @@ class RegisterPage extends Component<RegisterPageProps> {
       label: 'Войти',
       styles: {
         button: 'button button_outlined button_fullwidth auth-form__sign',
+      },
+      events: {
+        click: () => Router.go('/'),
       },
     });
   }

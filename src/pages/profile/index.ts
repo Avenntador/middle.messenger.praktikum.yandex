@@ -20,17 +20,17 @@ class Profile extends Component {
 
   public changePage(route: string) {
     switch (route) {
-      case 'profile': {
+      case '/settings': {
         this.setProps({ content: new MainProfilePage() });
         break;
       }
-      case 'profile-edit': {
+      case '/settings-edit': {
         this.setProps({
           content: new EditProfilePage({}),
         });
         break;
       }
-      case 'profile-change-password': {
+      case '/settings-change-password': {
         this.setProps({
           content: new ChangePasswordPage({}),
         });
