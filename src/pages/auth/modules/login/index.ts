@@ -3,8 +3,9 @@ import Button from '../../../../components/button';
 import Input from '../../../../components/input';
 import Component from '../../../../utils/Component';
 import Validator, { FieldsError } from '../../../../utils/Validator';
-import onSubmitForm from '../../../../utils/helpers';
+import { onSubmitForm } from '../../../../utils/helpers';
 import Router from '../../../../utils/Router';
+import AuthController from '../../../../controllers/AuthController';
 
 interface LoginPageProps {
   selector?: string;
@@ -18,7 +19,7 @@ class LoginPage extends Component<LoginPageProps> {
       selector: 'form',
       events: {
         submit: (e) => {
-          onSubmitForm(e, e.srcElement, this.children);
+          onSubmitForm(e, e.srcElement, this.children, AuthController.signin.bind(AuthController));
         },
       },
     });

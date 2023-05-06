@@ -2,14 +2,9 @@ import './error.scss';
 import Component from '../../utils/Component';
 import errorPageTemplate from './error.hbs';
 
-interface ErrorPageProps {
-  errorNumber: number;
-  title: string;
-}
-
 class ErrorPage extends Component {
-  constructor(props?: ErrorPageProps) {
-    super({ ...props });
+  constructor() {
+    super({});
   }
 
   public changePage(route: string) {

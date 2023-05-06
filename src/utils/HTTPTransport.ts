@@ -12,7 +12,7 @@ type Options = {
 };
 
 type QueryStringifyType = string | Record<string, string>;
-type HTTPMethod = (url: string, options?: Options) => Promise<unknown>;
+type HTTPMethod = <T, K>(path: string, data?: K) => Promise<T>;
 
 function queryStringify(data: QueryStringifyType): string {
   if (typeof data !== 'object') {
@@ -27,18 +27,26 @@ function queryStringify(data: QueryStringifyType): string {
 }
 
 class Http {
-  get: HTTPMethod = (url, data) => this.request(url, { method: METHOD.GET, data });
+  static BASE_URL = 'https://ya-praktikum.tech/api/v2';
 
-  post: HTTPMethod = (url, data) => {
-    return this.request(url, { method: METHOD.POST, data });
+  protected url = '';
+
+  constructor(endpoint: string) {
+    this.url = `${Http.BASE_URL}${endpoint}`;
+  }
+
+  get: HTTPMethod = (path, data) => this.request(`${this.url}${path}`, { method: METHOD.GET, data });
+
+  post: HTTPMethod = (path, data) => {
+    return this.request(`${this.url}${path}`, { method: METHOD.POST, data });
   };
 
-  put: HTTPMethod = (url, data) => {
-    return this.request(url, { method: METHOD.PUT, data });
+  put: HTTPMethod = (path, data) => {
+    return this.request(`${this.url}${path}`, { method: METHOD.PUT, data });
   };
 
-  delete: HTTPMethod = (url, data) => {
-    return this.request(url, { method: METHOD.DELETE, data });
+  delete: HTTPMethod = (path, data) => {
+    return this.request(`${this.url}${path}`, { method: METHOD.DELETE, data });
   };
 
   request<TResponse>(url: string, options: Options = { method: METHOD.GET }): Promise<TResponse> {
@@ -53,15 +61,25 @@ class Http {
       }
 
       xhr.open(method, url);
-      xhr.setRequestHeader('Content-Type', 'text/plain');
+      xhr.withCredentials = true;
+
+      if (!(data instanceof FormData)) {
+        xhr.setRequestHeader('Content-Type', 'application/json');
+      }
 
       xhr.onload = function () {
-        resolve(xhr.response);
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status < 400) {
+            resolve(xhr.response);
+          } else {
+            reject(xhr.response);
+          }
+        }
       };
 
-      xhr.onabort = reject;
-      xhr.onerror = reject;
-      xhr.ontimeout = reject;
+      xhr.onabort = () => reject(xhr);
+      xhr.onerror = () => reject(xhr);
+      xhr.ontimeout = () => reject(xhr);
 
       if (method === METHOD.GET || !data) {
         xhr.send();
@@ -72,4 +90,4 @@ class Http {
   }
 }
 
-export default new Http();
+export default Http;

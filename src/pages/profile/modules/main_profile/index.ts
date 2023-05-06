@@ -6,16 +6,16 @@ import mainProfileTemplate from './main_profile.hbs';
 import Avatar from '../../../../components/avatar';
 import avatarIcon from '../../../../../static/icons/avatarIcon.png';
 import Router from '../../../../utils/Router';
+import { User } from '../../../../api/AuthAPI';
+import AuthController from '../../../../controllers/AuthController';
 
 interface MainProfilePageProps {
-  name: string;
+  currentUser: User;
 }
 
 class MainProfilePage extends Component<MainProfilePageProps> {
-  constructor() {
-    super({
-      name: 'Name',
-    });
+  constructor(props: MainProfilePageProps) {
+    super({ ...props });
   }
 
   protected init() {
@@ -108,6 +108,11 @@ class MainProfilePage extends Component<MainProfilePageProps> {
       label: 'Выйти',
       styles: {
         button: 'button button_outlined button_warning',
+      },
+      events: {
+        click: () => {
+          AuthController.logout();
+        },
       },
     });
   }

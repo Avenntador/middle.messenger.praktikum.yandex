@@ -6,7 +6,7 @@ import changePasswordTemplate from './change_password.hbs';
 import Avatar from '../../../../components/avatar';
 import avatarIcon from '../../../../../static/icons/avatarIcon.png';
 import Validator, { FieldsError } from '../../../../utils/Validator';
-import onSubmitForm from '../../../../utils/helpers';
+import { onSubmitForm } from '../../../../utils/helpers';
 
 interface ChangePasswordPageProps {
   selector?: string;

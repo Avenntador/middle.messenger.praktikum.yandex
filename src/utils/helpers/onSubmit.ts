@@ -1,8 +1,7 @@
-import Component from './Component';
-import Validator from './Validator';
-import RoutesPath from './Router/RoutePaths';
+import Component from '../Component';
+import Validator from '../Validator';
 
-export const onSubmitForm = (
+const onSubmitForm = (
   e: Event,
   form: HTMLFormElement,
   fields: Record<string, Component | Component[]>,
@@ -24,9 +23,7 @@ export const onSubmitForm = (
       isError = true;
     }
 
-    if (!input.name.includes('repeat')) {
-      signInFormData[input.name] = input.value;
-    }
+    signInFormData[input.name] = input.value;
   });
 
   if (!isError) {
@@ -34,7 +31,4 @@ export const onSubmitForm = (
   }
 };
 
-export const isProtectedCurrentRoute = () => {
-  const currentLocation = window.location.pathname;
-  return currentLocation === RoutesPath.SIGNIN || currentLocation === RoutesPath.SIGNUP;
-};
+export default onSubmitForm;

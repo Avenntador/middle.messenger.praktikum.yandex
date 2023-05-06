@@ -6,7 +6,7 @@ import Avatar from '../../../../components/avatar';
 
 import Validator, { FieldsError } from '../../../../utils/Validator';
 import Component from '../../../../utils/Component';
-import onSubmitForm from '../../../../utils/helpers';
+import { onSubmitForm } from '../../../../utils/helpers';
 
 import avatarIcon from '../../../../../static/icons/avatarIcon.png';
 

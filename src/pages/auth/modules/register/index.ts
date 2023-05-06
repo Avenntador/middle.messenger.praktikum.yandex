@@ -3,8 +3,9 @@ import Button from '../../../../components/button';
 import Input from '../../../../components/input';
 import registerTemplate from './register.hbs';
 import Validator, { FieldsError } from '../../../../utils/Validator';
-import onSubmitForm from '../../../../utils/helpers';
+import { onSubmitForm } from '../../../../utils/helpers';
 import Router from '../../../../utils/Router';
+import AuthController from '../../../../controllers/AuthController';
 
 interface RegisterPageProps {
   selector?: string;
@@ -18,7 +19,7 @@ class RegisterPage extends Component<RegisterPageProps> {
       selector: 'form',
       events: {
         submit: (e) => {
-          onSubmitForm(e, e.srcElement, this.children);
+          onSubmitForm(e, e.srcElement, this.children, AuthController.signup.bind(AuthController));
         },
       },
     });
@@ -46,7 +47,7 @@ class RegisterPage extends Component<RegisterPageProps> {
     });
     this.children.login = new Input({
       label: 'Логин',
-      type: 'password',
+      type: 'text',
       name: 'login',
       selector: 'input',
       errorMessage: FieldsError.LOGIN,
