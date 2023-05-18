@@ -1,3 +1,5 @@
+PR - https://github.com/Avenntador/middle.messenger.praktikum.yandex/pull/17/
+
 # Проект первого модуля - мессенджер
 
 ## 2 спринт
