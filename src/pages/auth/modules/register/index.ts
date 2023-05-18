@@ -3,7 +3,7 @@ import Button from '../../../../components/button';
 import Input from '../../../../components/input';
 import registerTemplate from './register.hbs';
 import Validator, { FieldsError } from '../../../../utils/Validator';
-import { onSubmitForm } from '../../../../utils/helpers';
+import onSubmitForm from '../../../../utils/helpers/onSubmit';
 import Router from '../../../../utils/Router';
 import AuthController from '../../../../controllers/AuthController';
 
@@ -13,9 +13,8 @@ interface RegisterPageProps {
 }
 
 class RegisterPage extends Component<RegisterPageProps> {
-  constructor(props: RegisterPageProps) {
+  constructor() {
     super({
-      ...props,
       selector: 'form',
       events: {
         submit: (e) => {

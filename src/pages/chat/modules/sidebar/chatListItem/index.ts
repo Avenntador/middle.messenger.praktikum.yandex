@@ -1,29 +1,21 @@
 import Component from '../../../../../utils/Component';
 import ChatListItemTemplate from './chat-list-item.hbs';
+import { ChatInfo } from '../../../../../api/ChatsAPI';
+import Avatar from '../../../../../components/avatar';
 
-export interface ChatListItemProps {
-  id?: number;
-  avatar?: string;
-  unread_count?: number;
-  lastMessage?: {
-    user: {
-      first_name: string;
-      second_name: string;
-      avatar: string;
-      email: string;
-      login: string;
-      phone: string;
-    };
-  };
-  time?: string;
-  content?: string;
-  mine?: boolean;
-  events?: Record<string, (...args: any) => void>;
-}
-
-class ChatListItem extends Component<ChatListItemProps> {
-  constructor(props: ChatListItemProps) {
+class ChatListItem extends Component<ChatInfo> {
+  constructor(props: ChatInfo) {
     super({ ...props });
+  }
+
+  protected init(): void {
+    this.children.avatar = new Avatar({
+      avatar: this.props.avatar,
+      withModal: false,
+      styles: {
+        avatar: 'avatar avatar_medium',
+      },
+    });
   }
 
   protected render() {

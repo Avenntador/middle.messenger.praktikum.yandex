@@ -64,7 +64,7 @@ class Http {
       xhr.withCredentials = true;
 
       if (!(data instanceof FormData)) {
-        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
       }
 
       xhr.onload = function () {
@@ -82,7 +82,9 @@ class Http {
       xhr.ontimeout = () => reject(xhr);
 
       if (method === METHOD.GET || !data) {
-        xhr.send();
+        xhr.send(data);
+      } else if (data instanceof FormData) {
+        xhr.send(data);
       } else {
         xhr.send(JSON.stringify(data));
       }

@@ -10,6 +10,7 @@ function merge(lhs: Indexed, rhs: Indexed): Indexed {
       // eslint-disable-next-line no-continue
       continue;
     }
+
     try {
       if (rhs[p].constructor === Object) {
         rhs[p] = merge(lhs[p] as Indexed, rhs[p] as Indexed);

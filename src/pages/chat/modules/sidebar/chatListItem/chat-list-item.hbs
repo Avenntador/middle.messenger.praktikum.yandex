@@ -1,23 +1,22 @@
 <li class="chat-list__item">
-    <figure class="chat-list__avatar avatar avatar_medium">
-        <img src={{lastMessage.user.avatar}} alt="user-avatar" />
-    </figure>
+    {{{avatar}}}
     <div class="chat-list__user-info">
-        <p class="chat-list__name">{{lastMessage.user.first_name}} {{lastMessage.user.second_name}}</p>
+        <p class="chat-list__name">{{title}}</p>
+    {{#if last_message}}
         {{#if mine}}
         <p class="chat-list__last-message">
             <span class="chat-list__mine-last-message">Вы:</span>
-            {{content}}
+            {{last_message.content}}
             </p>
         {{else}}
-            <p class="chat-list__last-message">{{content}}</p>
+            <p class="chat-list__last-message">{{last_message.content}}</p>
         {{/if}}
     </div>
     <div class="chat-list__additional">
-        <p class="chat-list__time">{{time}}</p>
-        {{#unless mine}}
+        <p class="chat-list__time">{{date last_message.time}}</p>
+        {{#if unread_count}}
             <div class="chat-list__message-counter">{{unread_count}}</div>
-        {{/unless}}
-        
+        {{/if}}
     </div>
+    {{/if}}
 </li>

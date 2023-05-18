@@ -11,12 +11,18 @@ import sendIcon from '../../../../../../../static/icons/arrowRightIcon.png';
 import Menu from '../../../../components/menu';
 import MenuItem from '../../../../components/menu/menuItem';
 import Modal from '../../../../../../components/modal';
+import MessagesController from '../../../../../../controllers/MessagesController';
 
-class InputForm extends Component {
+interface InputFormProps {
+  selectedChatId?: number;
+  attachIcon?: string;
+}
+
+class InputForm extends Component<InputFormProps> {
   private _messageText = '';
 
-  constructor() {
-    super({});
+  constructor(props: InputFormProps) {
+    super({ ...props });
   }
 
   protected init() {
@@ -89,10 +95,8 @@ class InputForm extends Component {
       events: {
         click: (e) => {
           e.preventDefault();
-          if (this._messageText.trim() !== '') {
-            console.log('Посылаем сообщение', this._messageText);
-            this._messageText = '';
-            (this.children.newMessageInput as Input).clearInput();
+          if (this.props.selectedChatId) {
+            this.senMessageHandler(this.props.selectedChatId, this._messageText);
           }
         },
       },
@@ -116,7 +120,7 @@ class InputForm extends Component {
     });
 
     this.children.addFileModal = new Modal({
-      type: 'file',
+      isFile: true,
       title: 'Добавить файл',
       buttonTitle: 'Добавить',
     });
@@ -132,6 +136,14 @@ class InputForm extends Component {
   private _showModal(element: HTMLElement | null) {
     if (element) {
       element.style.display = 'block';
+    }
+  }
+
+  private senMessageHandler(id: number, message: string) {
+    if (this._messageText.trim() !== '') {
+      MessagesController.sendMessage(id, message);
+      this._messageText = '';
+      (this.children.newMessageInput as Input).clearInput();
     }
   }
 

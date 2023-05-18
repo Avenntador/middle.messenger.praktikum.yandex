@@ -1,37 +1,43 @@
 // eslint-disable-next-line max-classes-per-file
 import { User } from '../api/AuthAPI';
+// eslint-disable-next-line import/no-cycle
+import { Message } from '../controllers/MessagesController';
 import EventBus from './EventBus';
-import Component from './Component';
 import set from './helpers/set';
 import isEqual from './helpers/isEqual';
+import { ChatInfo } from '../api/ChatsAPI';
+import Component from './Component';
 
 enum StoreEvents {
   UPDATED = 'updated',
 }
 
 interface State {
-  currentUser: User;
+  currentUser?: User;
+  chats?: ChatInfo[];
+  messages?: Record<number, Message[]>;
+  selectedChat?: number;
 }
 
-class Store extends EventBus {
-  private _state: State | object = {};
+export class Store extends EventBus {
+  private state: any = {};
 
-  public set(path: string, data: unknown) {
-    set(this._state, path, data);
+  public set(keypath: string, data: unknown) {
+    set(this.state, keypath, data);
 
     this.emit(StoreEvents.UPDATED, this.getState());
   }
 
   public getState() {
-    return this._state;
+    return this.state;
   }
 }
 
 const store = new Store();
 
-export function withStore(mapStateToProps: (state: State) => State) {
-  return function wrapper(Block: typeof Component) {
-    return class extends Block {
+export function withStore(mapStateToProps: (state: State) => any) {
+  return function wrapper(Block: unknown) {
+    return class extends (Block as typeof Component) {
       constructor(props: Record<string, any>) {
         let state = mapStateToProps(store.getState() as State);
 

@@ -1,5 +1,13 @@
 import Http from '../utils/HTTPTransport';
 
+interface SearchFields {
+  id?: number | string;
+  offset?: number;
+  limit?: number;
+  name?: string;
+  title?: string;
+}
+
 abstract class BaseAPI {
   protected http: Http;
 
@@ -9,7 +17,7 @@ abstract class BaseAPI {
 
   abstract create?(data: unknown): Promise<unknown>;
 
-  abstract request?(id?: string): Promise<unknown>;
+  abstract request?(id?: string | SearchFields): Promise<unknown>;
 
   abstract update?(id: string, data: unknown): Promise<unknown>;
 

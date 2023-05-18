@@ -116,11 +116,9 @@ class Component<T extends Record<string, any> = any> {
   }
 
   private _componentDidUpdate(oldProps: T, newProps: T) {
-    const response = this.componentDidUpdate(oldProps, newProps);
-    if (!response) {
-      return;
+    if (this.componentDidUpdate(oldProps, newProps)) {
+      this.eventBus().emit(Component.EVENTS.FLOW_RENDER);
     }
-    this.eventBus().emit(Component.EVENTS.FLOW_RENDER);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

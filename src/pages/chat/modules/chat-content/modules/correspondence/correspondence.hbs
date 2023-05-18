@@ -1,5 +1,7 @@
 <div class="chat-content__correspondence">
-    <div class="chat-content__correspondence-date">{{date}}</div>
+    {{#if chatDate}}
+    <div class="chat-content__correspondence-date">{{fullDate chatDate}}</div>
+    {{/if}}
     <ol class="messages">
         {{{messages}}}
     </ol>

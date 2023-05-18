@@ -6,22 +6,31 @@ import Avatar from '../../../../components/avatar';
 
 import Validator, { FieldsError } from '../../../../utils/Validator';
 import Component from '../../../../utils/Component';
-import { onSubmitForm } from '../../../../utils/helpers';
+import onSubmitForm from '../../../../utils/helpers/onSubmit';
 
-import avatarIcon from '../../../../../static/icons/avatarIcon.png';
+import UserController from '../../../../controllers/UserController';
+import { withStore } from '../../../../utils/Store';
+import { User } from '../../../../api/AuthAPI';
 
-interface EditProfilePageProps {
+interface EditProfilePageProps extends User {
   selector?: string;
   events?: Record<string, (args: any) => void>;
 }
 
-class EditProfilePage extends Component<EditProfilePageProps> {
+class EditProfile extends Component<EditProfilePageProps> {
   constructor(props: EditProfilePageProps) {
     super({
       ...props,
       events: {
         submit: (e) => {
-          onSubmitForm(e, e.srcElement, this.children);
+          onSubmitForm(
+            e,
+            e.srcElement,
+            this.children,
+            UserController.changeProfile.bind(UserController),
+          );
+
+          this._hideModal();
         },
       },
     });
@@ -34,7 +43,7 @@ class EditProfilePage extends Component<EditProfilePageProps> {
       name: 'email',
       selector: 'input',
       errorMessage: FieldsError.EMAIL,
-      placeholder: 'pochta@gmail.com',
+      value: this.props.email,
       styles: { label: 'profile__input', input: 'input input_no-border' },
       events: {
         focus: (e) => {
@@ -49,7 +58,7 @@ class EditProfilePage extends Component<EditProfilePageProps> {
       label: 'Логин',
       type: 'text',
       name: 'login',
-      placeholder: 'login',
+      value: this.props.login,
       selector: 'input',
       errorMessage: FieldsError.LOGIN,
       styles: { label: 'profile__input', input: 'input input_no-border' },
@@ -66,7 +75,7 @@ class EditProfilePage extends Component<EditProfilePageProps> {
       label: 'Имя',
       type: 'text',
       name: 'first_name',
-      placeholder: 'Ivan',
+      value: this.props.first_name,
       selector: 'input',
       errorMessage: FieldsError.NAME,
       styles: { label: 'profile__input', input: 'input input_no-border' },
@@ -83,7 +92,7 @@ class EditProfilePage extends Component<EditProfilePageProps> {
       label: 'Фамилия',
       type: 'text',
       name: 'second_name',
-      placeholder: 'Ivanov',
+      value: this.props.second_name,
       selector: 'input',
       errorMessage: FieldsError.NAME,
       styles: { label: 'profile__input', input: 'input input_no-border' },
@@ -100,7 +109,7 @@ class EditProfilePage extends Component<EditProfilePageProps> {
       label: 'Имя в чате',
       type: 'text',
       name: 'display_name',
-      placeholder: 'Ivan',
+      value: this.props.display_name,
       selector: 'input',
       errorMessage: FieldsError.NAME,
       styles: { label: 'profile__input', input: 'input input_no-border' },
@@ -117,7 +126,7 @@ class EditProfilePage extends Component<EditProfilePageProps> {
       label: 'Телефон',
       type: 'number',
       name: 'phone',
-      placeholder: '+7(909)9673030',
+      value: this.props.phone,
       selector: 'input',
       errorMessage: FieldsError.PHONE,
       styles: { label: 'profile__input', input: 'input input_no-border' },
@@ -132,25 +141,23 @@ class EditProfilePage extends Component<EditProfilePageProps> {
     });
 
     this.children.avatar = new Avatar({
-      avatar: avatarIcon,
+      avatar: this.props.avatar,
       withModal: true,
       styles: {
         avatar: 'profile__avatar avatar avatar_large',
       },
       events: {
         click: () => {
-          const modalElement = (this.children.modal as Component).getContent();
-          if (modalElement) {
-            this._showModal(modalElement);
-          }
+          this._showModal();
         },
       },
     });
 
     this.children.modal = new Modal({
-      type: 'file',
+      isFile: true,
       title: 'Загрузите файл',
       buttonTitle: 'Поменять',
+      submitCallback: UserController.changeAvatar.bind(UserController),
     });
 
     this.children.submitButton = new Button({
@@ -175,8 +182,39 @@ class EditProfilePage extends Component<EditProfilePageProps> {
     }
   }
 
-  private _showModal(element: HTMLElement) {
-    element.style.display = 'block';
+  private _showModal() {
+    const modalElement = (this.children.modal as Component).getContent();
+    if (modalElement) {
+      modalElement.style.display = 'block';
+    }
+  }
+
+  private _hideModal() {
+    const modalElement = (this.children.modal as Component).getContent();
+    if (modalElement) {
+      modalElement.style.display = 'none';
+    }
+  }
+
+  protected componentDidUpdate(
+    _oldProps: EditProfilePageProps,
+    _newProps: EditProfilePageProps,
+  ): boolean {
+    (this.children.avatar as Avatar).setProps({
+      avatar: _newProps?.avatar,
+    });
+
+    Object.keys(_newProps).forEach((key) => {
+      if (this.children[key] instanceof Input) {
+        if (_newProps) {
+          (this.children[key] as Input).setProps({
+            value: _newProps[key as keyof User] as string,
+          });
+        }
+      }
+    });
+
+    return false;
   }
 
   protected render() {
@@ -184,4 +222,7 @@ class EditProfilePage extends Component<EditProfilePageProps> {
   }
 }
 
-export default EditProfilePage;
+const withUser = withStore((state) => ({ ...state.currentUser }));
+
+// eslint-disable-next-line import/prefer-default-export
+export const EditProfilePage = withUser(EditProfile);

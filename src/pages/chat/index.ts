@@ -3,157 +3,72 @@ import Component from '../../utils/Component';
 import ChatTemplate from './chat.hbs';
 
 import Sidebar from './modules/sidebar';
-import ChatContent from './modules/chat-content';
+import { ChatContent } from './modules/chat-content';
+import ChatListItem from './modules/sidebar/chatListItem';
 
-import ChatListItem, { ChatListItemProps } from './modules/sidebar/chatListItem';
-import Message from './components/message';
+import { Message } from '../../controllers/MessagesController';
+import ChatsController from '../../controllers/ChatsController';
 
-import avatarIcon from '../../../static/icons/avatarIcon.png';
-import deliveredIcon from '../../../static/icons/deliveredIcon.png';
+import { ChatInfo } from '../../api/ChatsAPI';
+import { withStore } from '../../utils/Store';
+import Router from '../../utils/Router';
 
-const mockChats = [
-  {
-    id: 1,
-    lastMessage: {
-      user: {
-        first_name: 'Петя',
-        second_name: 'Пупкин',
-        avatar: avatarIcon,
-        email: 'some@q.com',
-        login: 'some',
-        phone: 'some',
-      },
-    },
-    time: '11.02.2022',
-    unread_count: 1,
-    mine: true,
-    content: 'Привет!',
-  },
-  {
-    id: 2,
-    lastMessage: {
-      user: {
-        first_name: 'Витя',
-        second_name: 'Пупкин',
-        avatar: avatarIcon,
-        email: 'some@q.com',
-        login: 'some',
-        phone: 'some',
-      },
-    },
-    time: '11.02.2022',
-    unread_count: 1,
-    mine: false,
-    content: 'Привет!',
-  },
-  {
-    id: 3,
-    lastMessage: {
-      user: {
-        first_name: 'Леня',
-        second_name: 'Пупкин',
-        avatar: avatarIcon,
-        email: 'some@q.com',
-        login: 'some',
-        phone: 'some',
-      },
-    },
-    time: '11.02.2022',
-    unread_count: 1,
-    mine: true,
-    content: 'Привет!',
-  },
-];
+interface ChatProps {
+  chats: ChatInfo[];
+  userLogin: string;
+  messages: Message[];
+}
 
-const mockMessages = [
-  {
-    id: 1,
-    messages: [
-      {
-        mine: true,
-        message: 'Hi',
-        deliveredIcon,
-        time: '12:00',
-      },
-      {
-        mine: false,
-        message: 'How are u?',
-        deliveredIcon,
-        time: '12:00',
-      },
-    ],
-  },
-  {
-    id: 2,
-    messages: [
-      {
-        mine: true,
-        message: 'HIHIHIIH',
-        deliveredIcon,
-        time: '12:00',
-      },
-      {
-        mine: false,
-        message: 'YOYOYOOY',
-        deliveredIcon,
-        time: '12:00',
-      },
-    ],
-  },
-  {
-    id: 3,
-    messages: [
-      {
-        mine: true,
-        message: 'Privet',
-        deliveredIcon,
-        time: '12:00',
-      },
-      {
-        mine: false,
-        message: 'Privet',
-        deliveredIcon,
-        time: '12:00',
-      },
-    ],
-  },
-];
-
-class Chat extends Component {
-  constructor() {
-    super({});
+class Chat extends Component<ChatProps> {
+  constructor(props: ChatProps) {
+    super({ ...props });
   }
 
   protected init() {
+    ChatsController.getChats({ title: '' });
+
     this.children.sidebar = new Sidebar({
-      chats: this._createChats(mockChats),
+      chats: this.createChats(this.props),
     });
+
     this.children.chatContent = new ChatContent({ isLoaded: false });
   }
 
-  private _createChats(chats: ChatListItemProps[]) {
-    return chats.map(
-      (chat) => new ChatListItem({
-        ...chat,
-        events: {
-          click: () => {
-            this._selectChat(chat);
+  private createChats(props: ChatProps) {
+    if (props.chats) {
+      return props.chats.map((chat) => {
+        let mine = false;
+        if (chat.last_message) {
+          mine = chat.last_message.user.login === props.userLogin;
+        }
+
+        return new ChatListItem({
+          ...chat,
+          mine,
+          events: {
+            click: () => {
+              ChatsController.selectChat(chat.id);
+              (this.children.chatContent as Component).setProps({ isLoaded: true });
+              Router.go(`/messenger/${chat.id}`);
+            },
           },
-        },
-      }),
-    );
+        });
+      });
+    }
+
+    return [];
   }
 
-  private _selectChat(chat: ChatListItemProps) {
-    mockMessages.forEach((fetchMessages) => {
-      if (fetchMessages.id === chat.id) {
-        (this.children.chatContent as Component).setProps({
-          messages: fetchMessages.messages.map((item) => new Message({ ...item })),
-          isLoaded: true,
-          name: chat.lastMessage?.user.first_name,
-        });
-      }
-    });
+  protected componentDidUpdate(_oldProps: ChatProps, _newProps: ChatProps): boolean {
+    if (_newProps.chats) {
+      (this.children.sidebar as Component).setProps({
+        chats: this.createChats(_newProps),
+      });
+
+      return true;
+    }
+
+    return false;
   }
 
   protected render() {
@@ -161,4 +76,10 @@ class Chat extends Component {
   }
 }
 
-export default Chat;
+const withChat = withStore((state) => {
+  return {
+    chats: state.chats || [],
+  };
+});
+
+export default withChat(Chat);

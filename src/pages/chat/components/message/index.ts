@@ -1,17 +1,23 @@
 import Component from '../../../../utils/Component';
 import MessageTemplate from './message.hbs';
+import deliveredIcon from '../../../../../static/icons/deliveredIcon.png';
 
-interface MessageProps {
-  message: string;
+export interface MessageProps {
+  mine: boolean;
+  chat_id: number;
+  content: string;
+  file: null;
+  id: number;
+  is_read: boolean;
   time: string;
+  type: string;
+  user_id: number;
   deliveredIcon?: string;
-  image?: string;
-  mine?: boolean;
 }
 
 class Message extends Component<MessageProps> {
   constructor(props: MessageProps) {
-    super({ ...props });
+    super({ ...props, deliveredIcon });
   }
 
   protected render() {

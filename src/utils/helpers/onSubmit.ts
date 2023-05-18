@@ -11,7 +11,7 @@ const onSubmitForm = (
 
   const inputs = form.getElementsByTagName('input');
 
-  const signInFormData: Record<string, string> = {};
+  const formData: Record<string, string> = {};
   let isError = false;
 
   Array.from(inputs).forEach((input) => {
@@ -23,11 +23,13 @@ const onSubmitForm = (
       isError = true;
     }
 
-    signInFormData[input.name] = input.value;
+    if (!input.name.includes('repeat')) {
+      formData[input.name] = input.value;
+    }
   });
 
   if (!isError) {
-    cb(signInFormData);
+    cb(formData);
   }
 };
 

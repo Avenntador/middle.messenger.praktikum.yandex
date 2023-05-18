@@ -1,5 +1,10 @@
 import Component from '../Component';
+// eslint-disable-next-line import/no-cycle
 import Route from './Route';
+
+export interface ComponentConstructable<P extends Record<string, any> = any> {
+  new (props: P): Component<P>;
+}
 
 class Router {
   private static __instance: Router;
@@ -21,7 +26,7 @@ class Router {
     Router.__instance = this;
   }
 
-  public use(pathname: string, block: typeof Component) {
+  public use(pathname: string, block: ComponentConstructable) {
     const route = new Route(pathname, block, this.rootQuery);
     this.routes.push(route);
 

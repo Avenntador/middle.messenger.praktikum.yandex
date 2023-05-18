@@ -4,7 +4,7 @@ import Message from '../../../../components/message';
 
 interface CorrespondenceProps {
   messages?: Message[];
-  date?: string;
+  chatDate?: string;
 }
 
 class Correspondence extends Component<CorrespondenceProps> {
