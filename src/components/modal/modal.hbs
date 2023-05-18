@@ -1,11 +1,11 @@
 <div class="modal">
-    <div class="modal__container">
+    <form class="modal__container">
         <h1>{{title}}</h1>
-        {{#if type}}
-            {{{login}}}
-        {{else}}
+        {{#if isFile}}
             {{{inputFile}}}
+        {{else}}
+            {{{login}}}
         {{/if}}
         {{{submitButton}}}
-    </div>
+    </form>
 </div>

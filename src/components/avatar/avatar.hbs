@@ -1,5 +1,10 @@
 <div class="{{styles.avatar}}">
-    <img src='{{avatar}}' alt="user-avatar" />
+    <img 
+    {{#if avatar}} src='https://ya-praktikum.tech/api/v2/resources{{avatar}}'
+    {{else}}
+        src='{{avatarStub}}'
+    {{/if}}
+     alt="user-avatar" />
     {{#if withModal}}
     <div id="upload-avatar-button" class="avatar__background-change">
         Поменять <br />

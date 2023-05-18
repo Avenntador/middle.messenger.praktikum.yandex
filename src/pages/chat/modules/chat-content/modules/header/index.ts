@@ -6,11 +6,13 @@ import MenuItem from '../../../../components/menu/menuItem';
 import Modal from '../../../../../../components/modal';
 import Avatar from '../../../../../../components/avatar';
 import Button from '../../../../../../components/button';
-import avatarIcon from '../../../../../../../static/icons/avatarIcon.png';
 import imageAndVideoIcon from '../../../../../../../static/icons/photo.png';
+import { ChatInfo } from '../../../../../../api/ChatsAPI';
+import ChatsController from '../../../../../../controllers/ChatsController';
+import UserController from '../../../../../../controllers/UserController';
 
 interface HeaderProps {
-  name?: string;
+  selectedChat?: ChatInfo;
 }
 
 class Header extends Component<HeaderProps> {
@@ -20,7 +22,7 @@ class Header extends Component<HeaderProps> {
 
   protected init() {
     this.children.avatar = new Avatar({
-      avatar: avatarIcon,
+      avatar: this.props.selectedChat?.avatar,
       withModal: false,
       styles: {
         avatar: 'avatar avatar_small',
@@ -83,11 +85,33 @@ class Header extends Component<HeaderProps> {
 
     this.children.addUserModal = new Modal({
       title: 'Добавить пользователя',
+      inputTitle: 'Логин',
       buttonTitle: 'Добавить',
+      submitCallback: (user: string) => {
+        UserController.getUserByLogin(user).then((res) => {
+          const userById = JSON.parse(res as unknown as string);
+          const { id } = userById[0];
+
+          if (this.props.selectedChat?.id) {
+            ChatsController.addUserToChat(this.props.selectedChat?.id, id);
+          }
+        });
+      },
     });
     this.children.deleteUserModal = new Modal({
       title: 'Удалить пользователя',
+      inputTitle: 'Логин',
       buttonTitle: 'Удалить',
+      submitCallback: (user: string) => {
+        UserController.getUserByLogin(user).then((res) => {
+          const userById = JSON.parse(res as unknown as string);
+          const { id } = userById[0];
+
+          if (this.props.selectedChat?.id) {
+            ChatsController.deleteUsersFromChat(this.props.selectedChat?.id, id);
+          }
+        });
+      },
     });
 
     this._initModalListeners(this.children.userMenu.getContent());
@@ -112,6 +136,12 @@ class Header extends Component<HeaderProps> {
     }
   }
 
+  private _hideModal(element: HTMLElement | null) {
+    if (element) {
+      element.style.display = 'block';
+    }
+  }
+
   private _showMenu(element: HTMLElement | null) {
     if (element) {
       element.style.display = 'flex';
@@ -122,6 +152,12 @@ class Header extends Component<HeaderProps> {
     if (element) {
       element.style.display = 'none';
     }
+  }
+
+  protected componentDidUpdate(_oldProps: HeaderProps, _newProps: HeaderProps): boolean {
+    (this.children.avatar as Component).setProps({ avatar: _newProps.selectedChat?.avatar });
+
+    return true;
   }
 
   protected render() {

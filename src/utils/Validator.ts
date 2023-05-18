@@ -47,7 +47,7 @@ class Validator {
         return true;
       }
 
-      if (name.includes('password')) {
+      if (name.toLocaleLowerCase().includes('password')) {
         if (!this._isValidPassword(value)) {
           input.setValidError();
 
