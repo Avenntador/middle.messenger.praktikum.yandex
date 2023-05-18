@@ -1,5 +1,5 @@
 import AuthApi, { SigninData, SignupData } from '../api/AuthAPI';
-import Store from '../utils/Store';
+import store from '../utils/Store';
 import Router from '../utils/Router';
 
 class AuthController {
@@ -13,7 +13,7 @@ class AuthController {
     try {
       this.authApi.signin(data).then(() => {
         this.getCurrentUser();
-        Router.go('/chat');
+        Router.go('/messenger');
       });
     } catch (e) {
       console.log(e);
@@ -24,7 +24,7 @@ class AuthController {
     try {
       this.authApi.signup(data).then(() => {
         this.getCurrentUser();
-        Router.go('/chat');
+        Router.go('/messenger');
       });
     } catch (e) {
       console.log(e);
@@ -33,7 +33,8 @@ class AuthController {
 
   async getCurrentUser() {
     const currentUser = await this.authApi.request();
-    Store.set('currentUser', currentUser);
+
+    store.set('currentUser', JSON.parse(currentUser as unknown as string));
   }
 
   async logout() {
