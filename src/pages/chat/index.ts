@@ -61,7 +61,6 @@ class Chat extends Component<ChatProps> {
             click: () => {
               ChatsController.selectChat(chat.id);
               (this.children.chatContent as Component).setProps({ chatIsLoaded: true });
-              Router.go(`/messenger/${chat.id}`);
             },
           },
         });
@@ -72,13 +71,9 @@ class Chat extends Component<ChatProps> {
   }
 
   protected componentDidUpdate(_oldProps: ChatProps, _newProps: ChatProps): boolean {
-    if (_newProps.chats) {
-      (this.children.sidebar as Component).setProps({
-        chats: this.createChats(_newProps),
-      });
-
-      return true;
-    }
+    (this.children.sidebar as Component).setProps({
+      chats: this.createChats(_newProps),
+    });
 
     return false;
   }
