@@ -1,5 +1,3 @@
-PR - https://github.com/Avenntador/middle.messenger.praktikum.yandex/pull/17/
-
 # Проект первого модуля - мессенджер
 
 ### UI - https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0-1
