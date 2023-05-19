@@ -15,7 +15,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     .use(RoutesPath.SETTINGS_EDIT, Profile)
     .use(RoutesPath.SETTINGS_EDIT_PASSWORD, Profile)
     .use(RoutesPath.MESSENGER, Chat)
-    .use(RoutesPath.MESSENGER_ID, Chat)
     .use(RoutesPath.ERROR_404, ErrorPage)
     .use(RoutesPath.ERROR_500, ErrorPage);
 

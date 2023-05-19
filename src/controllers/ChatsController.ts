@@ -44,7 +44,7 @@ class ChatsController {
 
   async selectChat(id: number) {
     MessagesController.closeAll();
-
+    store.set('messages', []);
     const token = await this.getToken(id);
 
     await MessagesController.connect(id, token);
