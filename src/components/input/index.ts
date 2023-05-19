@@ -3,12 +3,13 @@ import Component from '../../utils/Component';
 import inputTemplate from './input.hbs';
 
 interface InputProps {
+  value?: string;
   name?: string;
   styles?: Record<string, string>;
   selector?: string;
   fileInputLabel?: string;
   label?: string;
-  placeholder?: string;
+  placeholder?: string | number;
   isDisabled?: boolean;
   type?: string;
   errorMessage?: string;

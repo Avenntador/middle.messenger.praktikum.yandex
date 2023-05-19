@@ -62,16 +62,6 @@ class Component<T extends Record<string, any> = any> {
     eventBus.on(Component.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  private _removeEvents() {
-    const { events = {} } = this.props;
-
-    Object.keys(events).forEach((eventName) => {
-      if (this._element) {
-        this._element.removeEventListener(eventName, events[eventName]);
-      }
-    });
-  }
-
   private _init() {
     this.init();
 
@@ -97,6 +87,16 @@ class Component<T extends Record<string, any> = any> {
     });
   }
 
+  private _removeEvents() {
+    const { events = {} } = this.props;
+
+    Object.keys(events).forEach((eventName) => {
+      if (this._element) {
+        this._element.removeEventListener(eventName, events[eventName]);
+      }
+    });
+  }
+
   private _componentDidMount() {
     this.componentDidMount();
   }
@@ -116,11 +116,9 @@ class Component<T extends Record<string, any> = any> {
   }
 
   private _componentDidUpdate(oldProps: T, newProps: T) {
-    const response = this.componentDidUpdate(oldProps, newProps);
-    if (!response) {
-      return;
+    if (this.componentDidUpdate(oldProps, newProps)) {
+      this.eventBus().emit(Component.EVENTS.FLOW_RENDER);
     }
-    this.eventBus().emit(Component.EVENTS.FLOW_RENDER);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -195,6 +193,8 @@ class Component<T extends Record<string, any> = any> {
 
     return fragment.content;
   }
+
+  public changePage(pathname: string) {}
 
   public getContent() {
     return this.element;

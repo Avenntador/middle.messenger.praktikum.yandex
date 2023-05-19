@@ -1,16 +1,12 @@
 class EventBus {
-  listeners: Record<string, CallableFunction[]>;
-
-  constructor() {
-    this.listeners = {};
-  }
+  private readonly listeners: Record<string, CallableFunction[]> = {};
 
   on(event: string, callback: CallableFunction) {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }
 
-    this.listeners[event].push(callback);
+    this.listeners[event]?.push(callback);
   }
 
   off(event: string, callback: CallableFunction) {
@@ -18,15 +14,17 @@ class EventBus {
       throw new Error(`Нет события: ${event}`);
     }
 
-    this.listeners[event] = this.listeners[event].filter((listener) => listener !== callback);
+    this.listeners[event] = this.listeners[event]!.filter((listener) => listener !== callback);
   }
 
   emit(event: string, ...args: unknown[]) {
     if (!this.listeners[event]) {
-      throw new Error(`Нет события: ${event}`);
+      return;
     }
 
-    this.listeners[event].forEach((listener) => listener(...args));
+    this.listeners[event]!.forEach((listener) => {
+      listener(...args);
+    });
   }
 }
 

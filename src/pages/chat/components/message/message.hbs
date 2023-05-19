@@ -1,26 +1,28 @@
 {{#if mine}}
 <li class="messages__mine">
-    {{#if image}}
-    <img class="messages__attach" src={{image}} alt="sended attach">
+    {{#if file}}
+    <img class="messages__attach" src={{file}} alt="sended attach">
     {{/if}}
     <p>
-        {{message}}
+        {{content}}
     </p>
     <span class="messages__message-info">
+        {{#if is_read}}
         <img class="delivered" src={{deliveredIcon}} alt="delivered-icon" />
-        <span class="messages__mine-date">{{time}}</span>
+        {{/if}}
+        <span class="messages__mine-date">{{date time}}</span>
     </span>
 </li>
 {{else}}
 <li>
-    {{#if image}}
-    <img src={{image}} alt="sended attach">
+    {{#if file}}
+    <img src={{file}} alt="sended attach">
     {{/if}}
     <p>
-        {{message}}
+        {{content}}
     </p>
     <span class="messages__message-info">
-        <span>{{time}}</span>
+        <span>{{date time}}</span>
     </span>
 </li>
 {{/if}}

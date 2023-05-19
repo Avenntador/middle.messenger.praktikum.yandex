@@ -37,6 +37,12 @@
       text-align: left;
     }
   }
+
+  &__menu {
+    display: block;
+    margin-top: 1.5rem;
+    margin-left: auto;
+  }
 }
 
 .chat-list {

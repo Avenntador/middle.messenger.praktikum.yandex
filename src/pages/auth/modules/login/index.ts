@@ -3,7 +3,9 @@ import Button from '../../../../components/button';
 import Input from '../../../../components/input';
 import Component from '../../../../utils/Component';
 import Validator, { FieldsError } from '../../../../utils/Validator';
-import onSubmitForm from '../../../../utils/helpers';
+import onSubmitForm from '../../../../utils/helpers/onSubmit';
+import Router from '../../../../utils/Router';
+import AuthController from '../../../../controllers/AuthController';
 
 interface LoginPageProps {
   selector?: string;
@@ -11,13 +13,12 @@ interface LoginPageProps {
 }
 
 class LoginPage extends Component<LoginPageProps> {
-  constructor(props: LoginPageProps) {
+  constructor() {
     super({
-      ...props,
       selector: 'form',
       events: {
-        submit: (e) => {
-          onSubmitForm(e, e.srcElement, this.children);
+        submit: (e: any) => {
+          onSubmitForm(e, e.srcElement, this.children, AuthController.signin.bind(AuthController));
         },
       },
     });
@@ -77,6 +78,9 @@ class LoginPage extends Component<LoginPageProps> {
       label: 'Нет аккаунта?',
       styles: {
         button: 'button button_outlined button_fullwidth auth-form__sign',
+      },
+      events: {
+        click: () => Router.go('/sign-up'),
       },
     });
   }

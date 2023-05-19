@@ -4,32 +4,40 @@ import Input from '../../../../components/input';
 import changePasswordTemplate from './change_password.hbs';
 
 import Avatar from '../../../../components/avatar';
-import avatarIcon from '../../../../../static/icons/avatarIcon.png';
 import Validator, { FieldsError } from '../../../../utils/Validator';
-import onSubmitForm from '../../../../utils/helpers';
+import onSubmitForm from '../../../../utils/helpers/onSubmit';
 
-interface ChangePasswordPageProps {
+import UserController from '../../../../controllers/UserController';
+import { withStore } from '../../../../utils/Store';
+import { User } from '../../../../api/AuthAPI';
+
+interface ChangePasswordPageProps extends User {
   selector?: string;
   events?: Record<string, (args: any) => void>;
 }
 
-class ChangePasswordPage extends Component<ChangePasswordPageProps> {
+class ChangePassword extends Component<ChangePasswordPageProps> {
   constructor(props: ChangePasswordPageProps) {
     super({
       ...props,
       events: {
         submit: (e) => {
-          onSubmitForm(e, e.target, this.children);
+          onSubmitForm(
+            e,
+            e.srcElement,
+            this.children,
+            UserController.changePassword.bind(UserController),
+          );
         },
       },
     });
   }
 
   protected init() {
-    this.children.old_password = new Input({
+    this.children.oldPassword = new Input({
       label: 'Старый пароль',
       type: 'password',
-      name: 'old_password',
+      name: 'oldPassword',
       selector: 'input',
       errorMessage: FieldsError.PASSWORD,
       placeholder: '*********',
@@ -39,55 +47,54 @@ class ChangePasswordPage extends Component<ChangePasswordPageProps> {
       },
       events: {
         focus: (e) => {
-          Validator.validate('password', this.children.old_password, e.target?.value);
+          Validator.validate('password', this.children.oldPassword, e.target?.value);
         },
         blur: (e) => {
-          Validator.validate('password', this.children.old_password, e.target?.value);
+          Validator.validate('password', this.children.oldPassword, e.target?.value);
         },
       },
     });
-    this.children.password = new Input({
+    this.children.newPassword = new Input({
       label: 'Новый пароль',
       type: 'password',
-      name: 'password',
+      name: 'newPassword',
       selector: 'input',
       errorMessage: FieldsError.PASSWORD,
       placeholder: '*********',
       styles: { label: 'profile__input', input: 'input input_no-border' },
       events: {
         focus: (e) => {
-          Validator.validate('password', this.children.password, e.target?.value);
+          Validator.validate('password', this.children.newPassword, e.target?.value);
         },
         blur: (e) => {
-          Validator.validate('password', this.children.password, e.target?.value);
+          Validator.validate('password', this.children.newPassword, e.target?.value);
         },
       },
     });
-    this.children.password_repeat = new Input({
+    this.children.newPassword_repeat = new Input({
       label: 'Повторите новый пароль',
       type: 'password',
-      name: 'password_repeat',
+      name: 'newPassword_repeat',
       selector: 'input',
       errorMessage: FieldsError.PASSWORD,
       placeholder: '*********',
       styles: { label: 'profile__input', input: 'input input_no-border' },
       events: {
         focus: (e) => {
-          Validator.validate('password', this.children.password_repeat, e.target?.value);
+          Validator.validate('password', this.children.newPassword_repeat, e.target?.value);
         },
         blur: (e) => {
-          Validator.validate('password', this.children.password_repeat, e.target?.value);
+          Validator.validate('password', this.children.newPassword_repeat, e.target?.value);
         },
       },
     });
 
     this.children.avatar = new Avatar({
-      avatar: avatarIcon,
+      avatar: this.props.avatar,
       withModal: false,
       styles: {
         avatar: 'profile__avatar avatar avatar_large',
       },
-      events: {},
     });
 
     this.children.submitButton = new Button({
@@ -104,4 +111,7 @@ class ChangePasswordPage extends Component<ChangePasswordPageProps> {
   }
 }
 
-export default ChangePasswordPage;
+const withUser = withStore((state) => ({ ...state.currentUser }));
+
+// eslint-disable-next-line import/prefer-default-export
+export const ChangePasswordPage = withUser(ChangePassword);

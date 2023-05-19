@@ -1,16 +1,17 @@
-import Component from './Component';
-import Validator from './Validator';
+import Component from '../Component';
+import Validator from '../Validator';
 
 const onSubmitForm = (
   e: Event,
   form: HTMLFormElement,
   fields: Record<string, Component | Component[]>,
+  cb: (data: any) => void,
 ) => {
   e.preventDefault();
 
   const inputs = form.getElementsByTagName('input');
 
-  const signInFormData: Record<string, string> = {};
+  const formData: Record<string, string> = {};
   let isError = false;
 
   Array.from(inputs).forEach((input) => {
@@ -22,11 +23,13 @@ const onSubmitForm = (
       isError = true;
     }
 
-    signInFormData[input.name] = input.value;
+    if (!input.name.includes('repeat')) {
+      formData[input.name] = input.value;
+    }
   });
 
   if (!isError) {
-    console.log('Отправлено -', signInFormData);
+    cb(formData);
   }
 };
 
