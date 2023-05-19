@@ -8,11 +8,12 @@ import { withStore } from '../../../../utils/Store';
 import { ChatInfo } from '../../../../api/ChatsAPI';
 
 interface ChatContentProps {
-  isLoaded: boolean;
+  chatIsLoaded: boolean;
   messages?: MessageProps[];
   selectedChat?: ChatInfo;
   userId: number;
   selectedChatId: number;
+  deleteChat: (arg: number) => void;
 }
 
 class ChatContentModule extends Component<ChatContentProps> {
@@ -21,7 +22,10 @@ class ChatContentModule extends Component<ChatContentProps> {
   }
 
   protected init() {
-    this.children.header = new Header({ selectedChat: this.props.selectedChat });
+    this.children.header = new Header({
+      selectedChat: this.props.selectedChat,
+      deleteChat: this.props.deleteChat,
+    });
     this.children.correspondence = new Correspondence({
       messages: this.createMessages(this.props),
     });
