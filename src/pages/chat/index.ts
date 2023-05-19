@@ -17,11 +17,13 @@ interface ChatProps {
   chats: ChatInfo[];
   userLogin: string;
   messages: Message[];
+  selectedChat: number;
+  chatIsLoaded: boolean;
 }
 
 class Chat extends Component<ChatProps> {
   constructor(props: ChatProps) {
-    super({ ...props });
+    super({ ...props, chatIsLoaded: false });
   }
 
   protected init() {
@@ -31,7 +33,17 @@ class Chat extends Component<ChatProps> {
       chats: this.createChats(this.props),
     });
 
-    this.children.chatContent = new ChatContent({ isLoaded: false });
+    this.children.chatContent = new ChatContent({
+      chatIsLoaded: this.props.chatIsLoaded,
+      deleteChat: (selectChat: number) => {
+        if (selectChat) {
+          ChatsController.deleteChat(selectChat).then(() => {
+            Router.go('/messenger');
+            (this.children.chatContent as Component).setProps({ chatIsLoaded: false });
+          });
+        }
+      },
+    });
   }
 
   private createChats(props: ChatProps) {
@@ -48,7 +60,7 @@ class Chat extends Component<ChatProps> {
           events: {
             click: () => {
               ChatsController.selectChat(chat.id);
-              (this.children.chatContent as Component).setProps({ isLoaded: true });
+              (this.children.chatContent as Component).setProps({ chatIsLoaded: true });
               Router.go(`/messenger/${chat.id}`);
             },
           },
@@ -79,6 +91,7 @@ class Chat extends Component<ChatProps> {
 const withChat = withStore((state) => {
   return {
     chats: state.chats || [],
+    selectedChat: state.selectedChat,
   };
 });
 

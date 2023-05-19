@@ -33,6 +33,15 @@ class ChatsController {
     return this.api.getToken(id);
   }
 
+  async deleteChat(chatId: number) {
+    await this.api.delete(chatId as unknown as string);
+    store.set('selectedChat', -1);
+    store.set(
+      'chats',
+      store.getState().chats?.filter((chat) => chat.id !== chatId),
+    );
+  }
+
   async selectChat(id: number) {
     MessagesController.closeAll();
 

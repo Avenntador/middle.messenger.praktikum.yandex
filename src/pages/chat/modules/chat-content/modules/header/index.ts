@@ -13,6 +13,7 @@ import UserController from '../../../../../../controllers/UserController';
 
 interface HeaderProps {
   selectedChat?: ChatInfo;
+  deleteChat: (arg: number) => void;
 }
 
 class Header extends Component<HeaderProps> {
@@ -58,6 +59,21 @@ class Header extends Component<HeaderProps> {
               const modalElement = (this.children.deleteUserModal as Component).getContent();
               if (modalElement) {
                 this._showModal(modalElement);
+              }
+            },
+          },
+        }),
+        new MenuItem({
+          icon: imageAndVideoIcon,
+          title: 'Удалить чат',
+          styles: {
+            menuItem: 'menu__item',
+          },
+          events: {
+            click: () => {
+              if (this.props.selectedChat) {
+                this._hideMenu((this.children.userMenu as Component).getContent());
+                this.props.deleteChat(this.props.selectedChat.id);
               }
             },
           },
