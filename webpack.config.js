@@ -29,9 +29,16 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)$/i,
-        loader: 'ts-loader',
-        exclude: ['/node_modules/'],
+        test: /\.ts?$/,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              configFile: path.resolve(__dirname, 'tsconfig.json'),
+            },
+          },
+        ],
+        exclude: /node_modules/,
       },
       {
         test: /\.s[ac]ss$/,
@@ -53,10 +60,7 @@ const config = {
           {
             loader: 'handlebars-loader',
             options: {
-              helperDirs: path.resolve(__dirname, '/src/utils/helpers/registerHelper.ts'),
-              precompileOptions: {
-                knownHelpersOnly: false,
-              },
+              helperDirs: [path.resolve(__dirname, 'src/utils/hbs-helper')],
             },
           },
         ],
