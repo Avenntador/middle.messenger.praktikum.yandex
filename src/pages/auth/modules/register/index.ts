@@ -60,6 +60,7 @@ class RegisterPage extends Component<RegisterPageProps> {
         },
       },
     });
+
     this.children.first_name = new Input({
       label: 'Имя',
       type: 'text',

@@ -32,7 +32,7 @@ class ChatContentModule extends Component<ChatContentProps> {
     this.children.inputForm = new InputForm({ selectedChatId: this.props.selectedChatId });
   }
 
-  protected componentDidUpdate(oldProps: ChatContentProps, newProps: ChatContentProps) {
+  protected componentDidUpdate(_oldProps: ChatContentProps, newProps: ChatContentProps) {
     if (newProps.selectedChat) {
       (this.children.header as Component).setProps({ selectedChat: newProps.selectedChat });
 

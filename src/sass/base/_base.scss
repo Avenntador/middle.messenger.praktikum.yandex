@@ -1,5 +1,5 @@
-@use 'sass/abstracts/variables' as *;
-@use 'sass/abstracts/mixins' as *;
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
 
 html {
   color: $font-color-primary;

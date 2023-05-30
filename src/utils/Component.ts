@@ -190,11 +190,8 @@ class Component<T extends Record<string, any> = any> {
         replaceWithStub(child);
       }
     });
-
     return fragment.content;
   }
-
-  public changePage(pathname: string) {}
 
   public getContent() {
     return this.element;

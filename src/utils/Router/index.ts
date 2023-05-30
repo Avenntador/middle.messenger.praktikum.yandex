@@ -1,9 +1,39 @@
+/* eslint-disable max-classes-per-file */
 import Component from '../Component';
-// eslint-disable-next-line import/no-cycle
-import Route from './Route';
+import renderDom from '../renderDom';
 
-export interface ComponentConstructable<P extends Record<string, any> = any> {
+interface ComponentConstructable<P extends Record<string, any> = any> {
   new (props: P): Component<P>;
+}
+
+function isEqual(lhs: string, rhs: string): boolean {
+  return lhs === rhs;
+}
+
+class Route {
+  private block: Component | null = null;
+
+  constructor(
+    private pathname: string,
+    private readonly BlockClass: ComponentConstructable,
+    private readonly query: string,
+  ) {}
+
+  leave() {
+    this.block = null;
+  }
+
+  match(pathname: string) {
+    return isEqual(pathname, this.pathname);
+  }
+
+  render() {
+    if (!this.block) {
+      this.block = new this.BlockClass({});
+
+      renderDom(this.query, this.block);
+    }
+  }
 }
 
 class Router {

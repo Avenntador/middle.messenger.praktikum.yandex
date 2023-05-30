@@ -1,4 +1,5 @@
-import registerHelpers from './utils/helpers/registerHelper';
+import './sass/main.scss';
+// import registerHelpers from './utils/helpers/registerHelper';
 import Profile from './pages/profile';
 import Auth from './pages/auth';
 import Chat from './pages/chat';
@@ -18,7 +19,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     .use(RoutesPath.ERROR_404, ErrorPage)
     .use(RoutesPath.ERROR_500, ErrorPage);
 
-  registerHelpers();
+  // registerHelpers();
 
   let isProtectedRoute = true;
 
