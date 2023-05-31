@@ -13,7 +13,8 @@
     "eslint:fix": "eslint --fix --ext .ts",
     "watch": "webpack --watch",
     "serve": "webpack serve",
-    "test": "mocha --timeout 10000"
+    "test": "mocha --timeout 10000",
+    "prepare": "husky install"
   },
   "author": "Gilyazetdinov Bulat bulat40k@gmail.com",
   "license": "ISC",
@@ -41,6 +42,7 @@
     "handlebars": "^4.7.7",
     "handlebars-loader": "^1.7.3",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.0",
     "jsdom": "^22.1.0",
     "mini-css-extract-plugin": "^2.7.2",
     "mocha": "^10.2.0",
