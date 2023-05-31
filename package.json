@@ -13,7 +13,7 @@
     "eslint:fix": "eslint --fix --ext .ts",
     "watch": "webpack --watch",
     "serve": "webpack serve",
-    "test": "mocha"
+    "test": "mocha --timeout 10000"
   },
   "author": "Gilyazetdinov Bulat bulat40k@gmail.com",
   "license": "ISC",
@@ -25,6 +25,7 @@
     "@babel/register": "^7.21.0",
     "@types/chai": "^4.3.5",
     "@types/mocha": "^10.0.1",
+    "@types/sinon": "^10.0.15",
     "@types/uuid": "^9.0.1",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.0.0",
@@ -47,6 +48,7 @@
     "resolve-url-loader": "^5.0.0",
     "sass": "^1.62.1",
     "sass-loader": "^12.6.0",
+    "sinon": "^15.1.0",
     "style-loader": "^3.3.1",
     "stylelint": "^15.4.0",
     "stylelint-config-idiomatic-order": "^9.0.0",
