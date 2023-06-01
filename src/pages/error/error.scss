@@ -1,5 +1,5 @@
-@use 'sass/abstracts/mixins' as *;
-@use 'sass/abstracts/variables' as *;
+@import '../../sass/abstracts/mixins';
+@import '../../sass/abstracts/variables';
 
 .error {
   position: absolute;

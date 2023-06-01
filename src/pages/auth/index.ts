@@ -36,27 +36,6 @@ class Auth extends Component {
     }
   }
 
-  // public changePage(route: string) {
-  //   switch (route) {
-  //     case '/': {
-  //       this.setProps({
-  //         content: new LoginPage({}),
-  //       });
-  //       break;
-  //     }
-  //     case '/sign-up': {
-  //       this.setProps({
-  //         content: new RegisterPage({}),
-  //       });
-  //       break;
-  //     }
-
-  //     default: {
-  //       break;
-  //     }
-  //   }
-  // }
-
   protected render() {
     return this.compile(AuthTemplate, { ...this.props });
   }

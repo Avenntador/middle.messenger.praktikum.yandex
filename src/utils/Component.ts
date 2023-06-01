@@ -11,7 +11,7 @@ class Component<T extends Record<string, any> = any> {
 
   public id = uuidv4();
 
-  protected props: T;
+  public props: T;
 
   private eventBus: () => EventBus;
 
@@ -193,8 +193,6 @@ class Component<T extends Record<string, any> = any> {
 
     return fragment.content;
   }
-
-  public changePage(pathname: string) {}
 
   public getContent() {
     return this.element;

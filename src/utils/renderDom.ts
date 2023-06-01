@@ -5,10 +5,7 @@ const renderDom = (query: string, element: Component) => {
 
   if (root) {
     root.innerHTML = '';
-    if (element.getContent()) {
-      root.append(element.getContent() as Node);
-      element.dispatchComponentDidMount();
-    }
+    root.append(element.getContent() as Node);
   } else {
     throw new Error(`root not found by selector "${query}"`);
   }

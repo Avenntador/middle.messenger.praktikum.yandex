@@ -1,5 +1,5 @@
-@use 'sass/abstracts/variables' as *;
-@use 'sass/abstracts/mixins' as *;
+@import '../../sass/abstracts/mixins';
+@import '../../sass/abstracts/variables';
 
 .chat {
   display: flex;
