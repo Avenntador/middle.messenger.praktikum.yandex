@@ -1,5 +1,7 @@
 # Проект первого модуля - мессенджер
 
+PR - https://github.com/Avenntador/middle.messenger.praktikum.yandex/pull/21
+
 ### UI - https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0-1
 ### Деплой на Netlify - https://bucolic-cascaron-d42cc8.netlify.app/
 
