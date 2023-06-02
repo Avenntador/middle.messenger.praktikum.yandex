@@ -1,5 +1,5 @@
 import './avatar.scss';
-import avatarTemplate from './avatar.hbs';
+import avatarTemplate from './avatarTmpl.hbs';
 import Component from '../../utils/Component';
 import avatarStub from '../../../static/icons/avatarIcon.png';
 

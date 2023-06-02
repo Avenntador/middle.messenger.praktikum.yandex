@@ -1,7 +1,7 @@
-import loginTemplate from './login.hbs';
+import Component from '../../../../utils/Component';
 import Button from '../../../../components/button';
 import Input from '../../../../components/input';
-import Component from '../../../../utils/Component';
+import loginTemplate from './loginTmpl.hbs';
 import Validator, { FieldsError } from '../../../../utils/Validator';
 import onSubmitForm from '../../../../utils/helpers/onSubmit';
 import Router from '../../../../utils/Router';
@@ -17,7 +17,7 @@ class LoginPage extends Component<LoginPageProps> {
     super({
       selector: 'form',
       events: {
-        submit: (e: any) => {
+        submit: (e) => {
           onSubmitForm(e, e.srcElement, this.children, AuthController.signin.bind(AuthController));
         },
       },
@@ -31,10 +31,7 @@ class LoginPage extends Component<LoginPageProps> {
       name: 'login',
       selector: 'input',
       errorMessage: FieldsError.LOGIN,
-      styles: {
-        label: 'input__label',
-        input: 'input input_bottom-border auth-form__input',
-      },
+      styles: { label: 'input__label', input: 'input input_bottom-border auth-form__input' },
       events: {
         focus: (e) => {
           Validator.validate('login', this.children.login, e.target?.value);
@@ -51,10 +48,7 @@ class LoginPage extends Component<LoginPageProps> {
       name: 'password',
       selector: 'input',
       errorMessage: FieldsError.PASSWORD,
-      styles: {
-        label: 'input__label',
-        input: 'input input_bottom-border auth-form__input',
-      },
+      styles: { label: 'input__label', input: 'input input_bottom-border auth-form__input' },
       events: {
         focus: (e) => {
           Validator.validate('password', this.children.password, e.target?.value);

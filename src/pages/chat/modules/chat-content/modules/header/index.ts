@@ -152,12 +152,6 @@ class Header extends Component<HeaderProps> {
     }
   }
 
-  private _hideModal(element: HTMLElement | null) {
-    if (element) {
-      element.style.display = 'block';
-    }
-  }
-
   private _showMenu(element: HTMLElement | null) {
     if (element) {
       element.style.display = 'flex';
